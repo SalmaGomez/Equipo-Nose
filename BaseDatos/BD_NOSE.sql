@@ -9,7 +9,7 @@ CREATE TABLE Resultados (
 );
 
 CREATE TABLE Recibo (
-  Folio INTEGER NOT NULL AUTO_INCREMENT,
+  Folio INTEGER NOT NULL,
   Importe FLOAT NULL,
   Fecha DATE NULL,
   Receptor_Nombre VARCHAR (100) NULL,
@@ -22,7 +22,7 @@ CREATE TABLE Recibo (
 );
 
 CREATE TABLE Factura (
-  Folio INTEGER NOT NULL AUTO_INCREMENT,
+  Folio INTEGER NOT NULL,
   Importe FLOAT NULL,
   Fecha DATE NULL,
   Receptor_Nombre VARCHAR (100) NULL,
