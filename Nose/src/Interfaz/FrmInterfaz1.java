@@ -40,8 +40,15 @@ public class FrmInterfaz1 extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        BtnSalir.setBackground(new java.awt.Color(204, 0, 0));
         BtnSalir.setText("Salir");
+        BtnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnSalirActionPerformed(evt);
+            }
+        });
 
+        BtnCargar.setBackground(new java.awt.Color(0, 204, 0));
         BtnCargar.setText("Abrir archivo");
         BtnCargar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -135,6 +142,11 @@ public class FrmInterfaz1 extends javax.swing.JFrame {
         // TODO add your handling code here:
 
     }//GEN-LAST:event_BtnCargarActionPerformed
+
+    private void BtnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSalirActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_BtnSalirActionPerformed
 
     /**
      * @param args the command line arguments
