@@ -5,14 +5,14 @@
  */
 package Interfaz;
 
-
+import BaseDatos.Conexion;
 import XMLL.archivoXML;
 import java.util.Vector;
 import javax.swing.JFileChooser;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import Calculos.*;
-
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -23,15 +23,19 @@ public class FrmInterfaz1 extends javax.swing.JFrame {
     /**
      * Creates new form FrmInterfaz1
      */
-        private String url;
-        String nombree;
-        Calculos mCalculos = new Calculos();
-        double impuesto;
+    private String url;
+    String nombree;
+    Calculos mCalculos = new Calculos();
+    String rfcr;
+    double impuesto;
 
     public FrmInterfaz1() {
         initComponents();
-        url="";
+        url = "";
         impuesto = 0;
+        LblTipo.setText("Nose~Soft");
+        rfcr = "";
+
     }
 
     /**
@@ -45,17 +49,21 @@ public class FrmInterfaz1 extends javax.swing.JFrame {
 
         BtnSalir = new javax.swing.JButton();
         BtnCargar = new javax.swing.JButton();
-        TxtRFC = new javax.swing.JTextField();
         LblImpuestos = new javax.swing.JLabel();
         Lbl2 = new javax.swing.JLabel();
         LblFecha = new javax.swing.JLabel();
         Lbl3 = new javax.swing.JLabel();
-        LblNombre = new javax.swing.JLabel();
+        LblNombree = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         LblTipo = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        LblRFC = new javax.swing.JLabel();
+        LblRFCE = new javax.swing.JLabel();
+        LblRFCR = new javax.swing.JLabel();
+        LblNombrer = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        Lbl4 = new javax.swing.JLabel();
+        TxtRFC = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -73,17 +81,19 @@ public class FrmInterfaz1 extends javax.swing.JFrame {
             }
         });
 
-        LblImpuestos.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        LblImpuestos.setForeground(new java.awt.Color(0, 0, 204));
+        LblImpuestos.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        LblImpuestos.setForeground(new java.awt.Color(255, 0, 51));
         LblImpuestos.setText("_______________");
 
+        Lbl2.setFont(new java.awt.Font("Book Antiqua", 0, 18)); // NOI18N
         Lbl2.setText("Fecha:");
 
         LblFecha.setText("_______________________");
 
-        Lbl3.setText("Nombre:");
+        Lbl3.setFont(new java.awt.Font("Book Antiqua", 0, 18)); // NOI18N
+        Lbl3.setText("Nombre Emisor:");
 
-        LblNombre.setText("___________________________");
+        LblNombree.setText("___________________________");
 
         jLabel1.setFont(new java.awt.Font("Tw Cen MT", 1, 24)); // NOI18N
         jLabel1.setText("IMPUESTOS");
@@ -91,11 +101,25 @@ public class FrmInterfaz1 extends javax.swing.JFrame {
         LblTipo.setFont(new java.awt.Font("Tahoma", 3, 24)); // NOI18N
         LblTipo.setText("___________");
 
+        jLabel2.setFont(new java.awt.Font("Adobe Arabic", 0, 24)); // NOI18N
         jLabel2.setText("Introduzca RFC:");
 
-        jLabel3.setText("RFC:");
+        jLabel3.setFont(new java.awt.Font("Book Antiqua", 0, 18)); // NOI18N
+        jLabel3.setText("RFC EMISOR:");
 
-        LblRFC.setText("___________________________");
+        LblRFCE.setText("___________________________");
+
+        LblRFCR.setText("___________________________");
+
+        LblNombrer.setText("___________________________");
+
+        jLabel4.setFont(new java.awt.Font("Book Antiqua", 0, 18)); // NOI18N
+        jLabel4.setText("RFC RECEPTOR:");
+
+        Lbl4.setFont(new java.awt.Font("Book Antiqua", 0, 18)); // NOI18N
+        Lbl4.setText("Nombre Receptor:");
+
+        TxtRFC.setEditable(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -104,40 +128,53 @@ public class FrmInterfaz1 extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(51, 51, 51)
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel3)
+                            .addComponent(Lbl3))
+                        .addGap(17, 17, 17)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(31, 31, 31)
-                                .addComponent(jLabel1))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(LblRFCE, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(82, 82, 82)
+                                                .addComponent(jLabel4))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(Lbl2)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(LblFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(LblRFCR, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel1)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(LblNombree)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(Lbl4)
+                                        .addGap(28, 28, 28)
+                                        .addComponent(LblNombrer)
+                                        .addGap(48, 48, 48))))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(Lbl3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(LblNombre))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(Lbl2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(LblFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(LblTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(TxtRFC, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addGap(18, 18, 18)
-                                .addComponent(LblRFC, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(LblTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(97, 97, 97)
+                                        .addComponent(jLabel2)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(TxtRFC, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(43, 43, 43)
-                        .addComponent(LblImpuestos, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(LblImpuestos, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(38, 38, 38)
                         .addComponent(BtnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(BtnCargar)))
-                .addContainerGap(57, Short.MAX_VALUE))
+                    .addComponent(BtnCargar))
+                .addContainerGap(78, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -147,11 +184,11 @@ public class FrmInterfaz1 extends javax.swing.JFrame {
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(BtnCargar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(TxtRFC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2))
+                            .addComponent(jLabel2)
+                            .addComponent(TxtRFC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap(104, Short.MAX_VALUE)
                         .addComponent(LblTipo)
                         .addGap(27, 27, 27)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -159,12 +196,22 @@ public class FrmInterfaz1 extends javax.swing.JFrame {
                     .addComponent(LblFecha))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel3)
-                    .addComponent(LblRFC, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(14, 14, 14)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Lbl3)
-                    .addComponent(LblNombre))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel3)
+                        .addComponent(LblRFCE, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel4)
+                        .addComponent(LblRFCR, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Lbl3)
+                            .addComponent(Lbl4)
+                            .addComponent(LblNombrer)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(LblNombree)))
                 .addGap(41, 41, 41)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -180,88 +227,166 @@ public class FrmInterfaz1 extends javax.swing.JFrame {
     private void BtnCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCargarActionPerformed
         // TODO add your handling code here:
 
-          try{
-        JFileChooser dato = new JFileChooser();
-        int op = dato.showOpenDialog(this);
-        
-        if (op == JFileChooser.APPROVE_OPTION) {
+        try {
+            //int opa;
+            //do {
+                JFileChooser dato = new JFileChooser();
+                int op = dato.showOpenDialog(this);
+
+                if (op == JFileChooser.APPROVE_OPTION) {
+
+                    url = dato.getSelectedFile().getPath();
+                }
+
+                if (url == "") {
+
+                    JOptionPane.showMessageDialog(null, "No Seleccionaste Nada");
+                } else {
+
+                    archivoXML mi_archivo = new archivoXML(url);
+                    mi_archivo.open();
+                    try {
+                        Vector vector_resultado = new Vector();
+                        NodeList root = mi_archivo.getRoot();
+                        //Padre
+                        Node comprobante = mi_archivo.getNode("cfdi:Comprobante", root);
+                        String folio = mi_archivo.getNodeAttr("folio", comprobante);
+                        String importe = mi_archivo.getNodeAttr("subTotal", comprobante);
+                        String fecha = mi_archivo.getNodeAttr("fecha", comprobante);
+                        System.out.println(folio);
+                        System.out.println(importe);
+                        System.out.println(fecha);
+                        //Emisor
+                        Node emisor = mi_archivo.getNode("cfdi:Emisor", comprobante.getChildNodes());
+                        String rfce = mi_archivo.getNodeAttr("rfc", emisor);
+                        nombree = mi_archivo.getNodeAttr("nombre", emisor);
+                        System.out.println(rfce);
+                        System.out.println(nombree);
+                        //Receptor
+                        Node receptor = mi_archivo.getNode("cfdi:Receptor", comprobante.getChildNodes());
+                        rfcr = mi_archivo.getNodeAttr("rfc", receptor);
+                        String nombrer = mi_archivo.getNodeAttr("nombre", receptor);
+                        System.out.println(rfcr);
+                        System.out.println(nombrer);
+                        //Traslados
+                        Node Traslados = mi_archivo.getNode("cfdi:Impuestos", comprobante.getChildNodes());
+                        String traslados = mi_archivo.getNodeAttr("totalImpuestosTrasladados", Traslados);
+                        String retenciones = mi_archivo.getNodeAttr("totalImpuestosRetenidos", Traslados);
+                        System.out.println(traslados);
+                        System.out.println(retenciones);
+
+                        LblNombree.setText(nombree);
+                        LblFecha.setText(fecha);
+                        LblImpuestos.setText(String.valueOf("Aqui Se Mostrará Su Determinado Valor"));
+                        LblNombrer.setText(nombrer);
+                        LblRFCR.setText(rfcr);
+                        this.LblRFCE.setText(rfce);
+
+                //Esto es para insertar osease guardar en la base los datos
+           try {
+                         //Conectamos con la base de datos
+                         Conexion mConexion = new Conexion();
+                         mConexion.Conectar("localhost", "nose_prueba", "root", "nose");
+                         //Formamos una instruccion DML -INSERT
+                         String INSERT = "insert into recibo_factura values ('?1','?2','?3','?4','?5','?6','?7','?8')";
+                         INSERT = INSERT.replace("?1", folio);
+                         INSERT = INSERT.replace("?2", importe);
+                         INSERT = INSERT.replace("?3", fecha);
+                         INSERT = INSERT.replace("?4", nombrer);
+                         INSERT = INSERT.replace("?5", nombree);
+                         INSERT = INSERT.replace("?6", rfcr);
+                         INSERT = INSERT.replace("?7", rfce);
+                         INSERT = INSERT.replace("?8", "1");
+                         //Llamamos al metodo que se encuentra en la clase conexión en el packete BaseDatos
+                         mConexion.ejecutarActualizacion(INSERT);
+                         JOptionPane.showMessageDialog(this, "guardado");
+                         this.setVisible(false);
             
-            url = dato.getSelectedFile().getPath();
-            
-        }	
-      
-            archivoXML mi_archivo=new archivoXML(url);
-            mi_archivo.open();
-            
-            Vector vector_resultado=new Vector();
-            NodeList root = mi_archivo.getRoot();
-           
-           //Padre
-           Node comprobante=mi_archivo.getNode("cfdi:Comprobante", root);
-           String folio = mi_archivo.getNodeAttr("folio", comprobante);
-           String importe = mi_archivo.getNodeAttr("subTotal", comprobante);
-           String fecha = mi_archivo.getNodeAttr("fecha", comprobante);
-              System.out.println(folio);
-              System.out.println(importe);
-              System.out.println(fecha);
-           //Emisor
-           Node emisor=mi_archivo.getNode("cfdi:Emisor", comprobante.getChildNodes());
-              String rfce = mi_archivo.getNodeAttr("rfc", emisor);
-              nombree = mi_archivo.getNodeAttr("nombre", emisor);
-             System.out.println(rfce);
-             System.out.println(nombree);
-           //Receptor
-           Node receptor=mi_archivo.getNode("cfdi:Receptor", comprobante.getChildNodes());
-              String rfcr = mi_archivo.getNodeAttr("rfc", receptor);
-              String nombrer = mi_archivo.getNodeAttr("nombre", receptor);
-             System.out.println(rfcr);
-             System.out.println(nombrer);
-           //Traslados
-           Node Traslados =mi_archivo.getNode("cfdi:Impuestos", comprobante.getChildNodes());
-            String traslados = mi_archivo.getNodeAttr("totalImpuestosTrasladados", Traslados);
-            String retenciones = mi_archivo.getNodeAttr("totalImpuestosRetenidos", Traslados);
-            System.out.println(traslados);
-            System.out.println(retenciones);
-           
-             
-            if(TxtRFC.getText().equals(rfce.toString())){
-                 //Recibo
-                 LblNombre.setText(nombree);
-                 LblFecha.setText(fecha);
-                 LblTipo.setText("Recibo");
-                 LblRFC.setText(rfce);
-                 impuesto = mCalculos.CalcularImpuestosRecibo(Float.parseFloat(importe));
-                 LblImpuestos.setText(String.valueOf(impuesto));
-                
-                              
-             }else
-             if(TxtRFC.getText().equals(rfcr.toString())){
-                 //Factura
-                 LblNombre.setText(nombrer);
-                 LblFecha.setText(fecha);
-                 LblTipo.setText("Factura");
-                 LblRFC.setText(rfcr);                
-                 impuesto = mCalculos.CalcularImpuestosFactura(Float.parseFloat(importe));
-                 this.LblImpuestos.setText(String.valueOf(impuesto));
-                 
-                 
-                 
-             }
-             
-             
-            
-//            Node comprobante=root.item(0);
-//            Node receptor=comprobante.getChildNodes().item(2);
-//           
-//          Node m=  mi_archivo.getNode("cfdi:emisor",root);
-//            System.out.println("atributos"+m.getAttributes());
-//            System.out.println(mi_archivo.getNodeAttr("nombre", receptor));
-//            String total=mi_archivo.getNodeAttr("total", comprobante);
-//            System.out.println(total);
-//            
-        }catch(Exception error){
-            System.out.println(error.toString());
+                         } catch (Exception error) {
+                         JOptionPane.showMessageDialog(this, "Error de guardar en la base de datos");
+                         System.out.println(error.toString());
+                         }
+                      /*  System.out.println(TxtRFC.getText());
+                        if (TxtRFC.getText().equals(rfce.toString())) {
+                            //Recibo
+                            /*LblNombree.setText(nombree);
+                            LblFecha.setText(fecha);
+                            LblTipo.setText("Recibo");
+                            LblRFCE.setText(rfce);
+                            impuesto = mCalculos.CalcularImpuestosRecibo(Float.parseFloat(importe));
+                            LblImpuestos.setText(String.valueOf("impuesto"));
+                            try {
+                                //Conectamos con la base de datos
+                                Conexion mConexion = new Conexion();
+                                mConexion.Conectar("localhost", "nose_prueba", "root", "nose");
+                                //Formamos una instruccion DML -INSERT
+                                String INSERT = "insert into recibo_factura values ('?1','?2','?3','?4','?5','?6','?7','?8')";
+                                INSERT = INSERT.replace("?1", folio);
+                                INSERT = INSERT.replace("?2", importe);
+                                INSERT = INSERT.replace("?3", fecha);
+                                INSERT = INSERT.replace("?4", nombrer);
+                                INSERT = INSERT.replace("?5", nombree);
+                                INSERT = INSERT.replace("?6", rfcr);
+                                INSERT = INSERT.replace("?7", rfce);
+                                INSERT = INSERT.replace("?8", "1");
+                                //Llamamos al metodo que se encuentra en la clase conexión en el packete BaseDatos
+                                mConexion.ejecutarActualizacion(INSERT);
+                                JOptionPane.showMessageDialog(this, "guardado");
+                                this.setVisible(false);
+                            } catch (Exception error) {
+                                JOptionPane.showMessageDialog(this, "Error de guardar en la base de datos");
+                                System.out.println(error.toString());
+                            }
+
+                        } else if (TxtRFC.getText().equals(rfcr.toString())) {
+                            //Factura
+                            LblNombrer.setText(nombrer);
+                            LblTipo.setText("Factura");
+                            LblRFCR.setText(rfcr);
+                            impuesto = mCalculos.CalcularImpuestosFactura(Float.parseFloat(importe));
+                            this.LblImpuestos.setText(String.valueOf(impuesto));
+
+                            try {
+                                //Conectamos con la base de datos
+                                Conexion mConexion = new Conexion();
+                                mConexion.Conectar("localhost", "nose_prueba", "root", "nose");
+                                //Formamos una instruccion DML -INSERT
+                                String INSERT = "insert into recibo_factura values ('?1','?2','?3','?4','?5','?6','?7','?8')";
+                                INSERT = INSERT.replace("?1", folio);
+                                INSERT = INSERT.replace("?2", importe);
+                                INSERT = INSERT.replace("?3", fecha);
+                                INSERT = INSERT.replace("?4", nombrer);
+                                INSERT = INSERT.replace("?5", nombree);
+                                INSERT = INSERT.replace("?6", rfcr);
+                                INSERT = INSERT.replace("?7", rfce);
+                                //munero 2 para identiificar el tipo en la base de datos como una factura
+                                INSERT = INSERT.replace("?8", "2");
+                                //Llamamos al metodo que se encuentra en la clase conexión en el packete BaseDatos
+                                mConexion.ejecutarActualizacion(INSERT);
+                                JOptionPane.showMessageDialog(this, "guardado");
+                                this.setVisible(false);
+                            } catch (Exception error) {
+                                JOptionPane.showMessageDialog(this, "Error de guardar en la base de datos");
+                                System.out.println(error.toString());
+                            }
+                        }*/
+
+                    } catch (Exception error) {
+                        JOptionPane.showMessageDialog(null, "Error No Puedes abrir ese archivo");
+                    }
+                    if (rfcr.toString() == "") {
+                        JOptionPane.showMessageDialog(null, "ESTE NO ES UN ARCHIVO FACTURA NI RECIBO");
+
+                    }
+                }
+                //opa = JOptionPane.showConfirmDialog(rootPane, "Desea Cargar Otro Archivo?");
+
+           // } while ((opa != 1) && (opa != 2));
+        } catch (Exception error) {
+            JOptionPane.showMessageDialog(null, "Error No Puedes abrir ese archivo");
+            //System.out.print(error.toString());
         }
+
     }//GEN-LAST:event_BtnCargarActionPerformed
 
     private void BtnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSalirActionPerformed
@@ -309,14 +434,18 @@ public class FrmInterfaz1 extends javax.swing.JFrame {
     private javax.swing.JButton BtnSalir;
     private javax.swing.JLabel Lbl2;
     private javax.swing.JLabel Lbl3;
+    private javax.swing.JLabel Lbl4;
     private javax.swing.JLabel LblFecha;
     private javax.swing.JLabel LblImpuestos;
-    private javax.swing.JLabel LblNombre;
-    private javax.swing.JLabel LblRFC;
+    private javax.swing.JLabel LblNombree;
+    private javax.swing.JLabel LblNombrer;
+    private javax.swing.JLabel LblRFCE;
+    private javax.swing.JLabel LblRFCR;
     private javax.swing.JLabel LblTipo;
     private javax.swing.JTextField TxtRFC;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     // End of variables declaration//GEN-END:variables
 }

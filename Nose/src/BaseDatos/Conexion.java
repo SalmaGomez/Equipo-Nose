@@ -34,6 +34,21 @@ public class Conexion {
             this.conexion.close();
             return false;
         }
+        
+        
+    }
+         /**Ejecuta una consulta SQL con SELECT**/
+    public ResultSet ejecutarConsulta(String instruccionQL) throws SQLException {
+        ResultSet resultado = this.comando.executeQuery(instruccionQL);
+        return resultado;
+    }
+
+    /**Ejecuta una comando DML como INSERt, UPDATE o DELETE o tambien DDL como CREATE, DROP, ALTER**/
+    public int ejecutarActualizacion(String instruccionDML) throws SQLException {
+        int i;
+        i = this.comando.executeUpdate(instruccionDML);
+        System.out.println(instruccionDML + " Ejecutada");
+        return i;
     }
 
 }
