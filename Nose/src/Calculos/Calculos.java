@@ -3,9 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Calculos;
+
 import BaseDatos.*;
+import java.sql.ResultSet;
+import java.util.Date;
 import javax.swing.JOptionPane;
 
 /**
@@ -13,6 +15,7 @@ import javax.swing.JOptionPane;
  * @author TaniaEsparza
  */
 public class Calculos {
+
     private float Impuestos;
     private float Ganancias;
     private float Perdidas;
@@ -22,46 +25,94 @@ public class Calculos {
     private float IVAr;
     private float Retenciones;
     private String Fecha;
-    
-    
-    public Calculos(){
-       Impuestos = 0;
-       Ganancias = 0;
-       Perdidas = 0;
-       Utilidad_Bruta = 0;
-       Fecha = " ";
+    private float ImpuestosM;
+    float a;
+    float SueldoIVA;
+
+    public Calculos() {
+        Impuestos = 0;
+        Ganancias = 0;
+        Perdidas = 0;
+        Utilidad_Bruta = 0;
+        Fecha = " ";
     }
-    
-    public void CalcularImpuestosFactura(){
-      
+
+    public float CalcularImpuestosFactura(float Importe) {
+        IVA = (float) (Importe * 0.16);
+        Impuestos = IVA;
+        return Impuestos;
     }
-    public void CalcularImpuestosRecibo(){
-         
+
+    public float CalcularImpuestosRecibo(float Importe) {
+        IVA = (float) (Importe * 0.16);
+
+        ISR = (float) (Importe * 0.10);
+
+        IVAr = (float) (Importe * 0.1067);
+
+        Retenciones = (float) (Importe + IVAr);
+
+        Impuestos =  Retenciones - IVAr;
+
+        return Impuestos;
     }
-    
-    public void ImpuestosMensuales(){
-        
+
+    public float ImpuestosMensuales(String mes, String anyo) {
+        try {
+            // fecha = "Cmbanyo.getText()+"-"+CmbMes.getText()";
+            Conexion mConexion = new Conexion();
+            mConexion.Conectar("localhost", "nose_prueba", "root", "nose");
+            String impuestos = ("select SUM(Impuesto) as total from recibo_factura where fecha >= '?2-?1-01' and fecha <= '?2-?1-31';");
+            impuestos = impuestos.replace("?1", mes);
+            impuestos = impuestos.replace("?2", anyo);
+            ResultSet listaimpuestos = mConexion.ejecutarConsulta(impuestos);
+            if (listaimpuestos != null) {
+                while (listaimpuestos.next()) {
+
+                    a = listaimpuestos.getFloat("total");
+                    
+                    System.out.println(a);
+                    return a;
+                }
+
+            }
+        } catch (Exception error) {
+            JOptionPane.showMessageDialog(null, "Error al realizar Consulta");
+            System.out.println(error.toString());
+        }
+        return ImpuestosM;
     }
-    
-    public void CalcularGananciasMensuales(){
-        
+
+    public float CalcularGananciasPerdidasMensuales(float Sueldo) {
+        SueldoIVA = (float) (Sueldo * 0.16);
+        this.Ganancias = SueldoIVA - a;
+        if (this.Ganancias > 0) {
+            return Ganancias;
+        } else if (Ganancias < 0) {
+            Perdidas = SueldoIVA - a;
+            return Perdidas;
+        } else {
+            return 0;
+        }
     }
-    public void CalcularPerdidasMensuales(){
-        
+
+//    public void CalcularUtilidad_BrutaMensuales() {
+//        
+//    }
+
+    public void ImpuestosAnuales() {
+
     }
-    public void CalcularUtilidad_BrutaMensuales(){
-        
+
+    public void CalcularGananciasAnuales() {
+
     }
-    public void ImpuestosAnuales(){
-        
+
+    public void CalcularPerdidasAnuales() {
+
     }
-    public void CalcularGananciasAnuales(){
-        
-    }
-    public void CalcularPerdidasAnuales(){
-        
-    }
-    public void CalcularUtilidad_BrutaAnuales(){
-        
+
+    public void CalcularUtilidad_BrutaAnuales() {
+
     }
 }
