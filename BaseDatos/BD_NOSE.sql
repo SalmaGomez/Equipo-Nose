@@ -4,33 +4,20 @@ CREATE TABLE Resultados (
   Ganancias FLOAT NULL,
   Perdidas FLOAT NULL,
   Utilidad_Bruta FLOAT NULL,
-  Fecha DATE NULL,
+  Fecha DATE NULL UNIQUE,
   PRIMARY KEY(idResultados)
 );
 
-CREATE TABLE Recibo (
+CREATE TABLE Recibo_Factura (
   Folio INTEGER NOT NULL,
   Importe FLOAT NULL,
-  Fecha DATE NULL,
+  Fecha DATE NULL ,
   Receptor_Nombre VARCHAR (100) NULL,
   Emisor_Nombre VARCHAR (100) NULL,
   RFC_Receptor VARCHAR (100) NULL,
   RFC_Emisor VARCHAR (100) NULL,
-  Retenciones FLOAT NULL,
-  Traslados FLOAT NULL,
+  Tipo VARCHAR (100) NOT NULL,
+  Impuesto FLOAT NULL,
+  Metodo_Pago VARCHAR (100) NOT NULL,
   PRIMARY KEY(Folio)
 );
-
-CREATE TABLE Factura (
-  Folio INTEGER NOT NULL,
-  Importe FLOAT NULL,
-  Fecha DATE NULL,
-  Receptor_Nombre VARCHAR (100) NULL,
-  Emisor_Nombre VARCHAR (100) NULL,
-  RFC_Receptor VARCHAR (100) NULL,
-  RFC_Emisor VARCHAR (100) NULL,
-  Traslados FLOAT NULL,
-  PRIMARY KEY(Folio)
-);
-
-
