@@ -617,7 +617,7 @@ public class FrmInterfaz1 extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    private void Cargar() {
+private void Cargar() {
 
         try {
             //int opa;
@@ -633,7 +633,7 @@ public class FrmInterfaz1 extends javax.swing.JFrame {
             if (url == "") {
 
                 JOptionPane.showMessageDialog(null, "No Seleccionaste Nada");
-//            } else {
+            } else {
 
                 archivoXML mi_archivo = new archivoXML(url);
                 mi_archivo.open();
@@ -676,7 +676,7 @@ public class FrmInterfaz1 extends javax.swing.JFrame {
                      LblRFCR.setText(rfcr);
                      this.LblRFCE.setText(rfce);*/
 
- /* //Esto es para insertar osease guardar en la base los datos
+                    /* //Esto es para insertar osease guardar en la base los datos
                      try {
                      //Conectamos con la base de datos
                      Conexion mConexion = new Conexion();
@@ -700,7 +700,8 @@ public class FrmInterfaz1 extends javax.swing.JFrame {
                      JOptionPane.showMessageDialog(this, "Error de guardar en la base de datos");
                      System.out.println(error.toString());
                      }*/
-
+                    System.out.println(rfcactivo);
+                    if (rfcactivo.equals(rfce.toString())) {
                         //Recibo
                         LblNombree1.setText(nombree);
                         LblNombrer1.setText(nombrer);
@@ -709,6 +710,7 @@ public class FrmInterfaz1 extends javax.swing.JFrame {
                         LblRFCE1.setText(rfce);
                         LblRFCR1.setText(rfcr);
                         impuesto = mCalculos.CalcularImpuestosRecibo(Float.parseFloat(importe));
+                        //LblImpuestos.setText(String.valueOf("impuesto"));
                         try {
                             //Conectamos con la base de datos
                             Conexion mConexion = new Conexion();
@@ -730,11 +732,15 @@ public class FrmInterfaz1 extends javax.swing.JFrame {
                             JOptionPane.showMessageDialog(this, "guardado");
                             //this.setVisible(false);
                         } catch (Exception error) {
-                            JOptionPane.showMessageDialog(this, "Error al guardar en la base de datos");
+                            JOptionPane.showMessageDialog(this, "Error de guardar en la base de datos");
                             System.out.println(error.toString());
                         }
 
-//                   
+                    } else if (rfcactivo.equals(rfcr.toString())) {
+                        //Factura
+                        if (this.RBCombustible.isSelected()) {
+
+                            if (((this.RBCombustible.isSelected() && (metodo_pago.equals("04"))) || (this.RBCombustible.isSelected() && (metodo_pago.equals("Tarjeta credito"))))) {
                                 LblNombree1.setText(nombree);
                                 LblNombrer1.setText(nombrer);
                                 LblFecha1.setText(fecha);
@@ -768,7 +774,8 @@ public class FrmInterfaz1 extends javax.swing.JFrame {
                                     System.out.println(error.toString());
                                 }
 
-
+                                JOptionPane.showMessageDialog(null, "Se apagado con tarjeta de credito");
+                            } else {
 
                                 LblNombree1.setText(nombree);
                                 LblNombrer1.setText(nombrer);
@@ -804,7 +811,11 @@ public class FrmInterfaz1 extends javax.swing.JFrame {
                                     System.out.println(error.toString());
                                 }
 
+                                JOptionPane.showMessageDialog(null, "Se apagado con en efectivo");
 
+                            }
+
+                        } else {
                             LblNombree1.setText(nombree);
                             LblNombrer1.setText(nombrer);
                             LblFecha1.setText(fecha);
@@ -839,8 +850,12 @@ public class FrmInterfaz1 extends javax.swing.JFrame {
                                 System.out.println(error.toString());
                             }
 
-                        JOptionPane.showMessageDialog(null, "RFC NO ENCONTRADO");
+                        }
 
+                    } else {
+
+                        JOptionPane.showMessageDialog(null, "RFC NO ENCONTRADO");
+                    }
                 } catch (Exception error) {
                     JOptionPane.showMessageDialog(null, "Error No Puedes abrir ese archivo");
                 }
@@ -849,13 +864,16 @@ public class FrmInterfaz1 extends javax.swing.JFrame {
 
                 }
             }
+            //opa = JOptionPane.showConfirmDialog(rootPane, "Desea Cargar Otro Archivo?");
 
+            // } while ((opa != 1) && (opa != 2));
         } catch (Exception error) {
             JOptionPane.showMessageDialog(null, "Error No Puedes abrir ese archivo");
             //System.out.print(error.toString());
         }
 
     }
+
 
     private void pestanaconsultaGainedFocus(java.awt.event.FocusEvent evt) {
 
@@ -1316,7 +1334,30 @@ public class FrmInterfaz1 extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnSalir1ActionPerformed
 
     private void BtnCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCargarActionPerformed
+ try {
+            //rfcactivo=this.consultar();
+            // TODO add your handling code here:
+            if (this.Lblactivo.getText().equals("")) {
 
+                rfcactivo = JOptionPane.showInputDialog(null, "Favor De Ingresar Tu RFC");
+                this.Lblactivo.setText(rfcactivo);
+                this.insertarusuario(1, rfcactivo);
+            } else {
+
+                if (entradafac == 0) {
+                    Cargar();
+                } else if (entradafac > 0) {
+                    int a = JOptionPane.showConfirmDialog(rootPane, "Seguro que quieres cargar otra factura o recibo?");
+                    if (a == 0) {
+                        Cargar();
+                    }
+
+                }
+                entradafac = 1;
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(FrmInterfaz1.class.getName()).log(Level.SEVERE, null, ex);
+        }
         // TODO add your handling code here:
         //LBLACTIVO
 
