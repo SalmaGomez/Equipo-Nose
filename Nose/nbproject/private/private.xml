@@ -3,9 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Acer/Documents/Septimo%20Semestre/Nacho-Scrum/NOSE_Repositorio/Equipo-Nose/Nose/src/Interfaz/FrmInterfaz1.java</file>
-            <file>file:/C:/Users/Acer/Documents/Septimo%20Semestre/Nacho-Scrum/NOSE_Repositorio/Equipo-Nose/Nose/src/Calculos/Calculos.java</file>
-            <file>file:/C:/Users/Acer/Documents/Septimo%20Semestre/Nacho-Scrum/NOSE_Repositorio/Equipo-Nose/Nose/src/XMLL/archivoXML.java</file>
+            <file>file:/home/marrufo/Documentos/Nacho/Nose/src/Control/Main.java</file>
+            <file>file:/home/marrufo/Documentos/Nacho/Nose/src/Calculos/Calculos.java</file>
+            <file>file:/home/marrufo/Documentos/Nacho/Nose/src/Interfaz/FrmInterfaz1.java</file>
+            <file>file:/home/marrufo/Documentos/Nacho/Nose/src/BaseDatos/Conexion.java</file>
         </group>
     </open-files>
 </project-private>
