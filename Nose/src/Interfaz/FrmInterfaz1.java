@@ -79,7 +79,6 @@ public class FrmInterfaz1 extends javax.swing.JFrame {
         rfcr = "";
         entradafac = 0;
         metodo_pago = "";
-        rfcactivo = "";
         ImageIcon imagen = new ImageIcon("src/IMG-20171104-WA0004.jpg");
         Icon icono = new ImageIcon(imagen.getImage().getScaledInstance(this.LblImagen1.getWidth(), this.LblImagen1.getHeight(), 100));
         this.LblImagen1.setIcon(icono);
@@ -153,6 +152,7 @@ public class FrmInterfaz1 extends javax.swing.JFrame {
         RBEditar = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(0, 204, 204));
         addWindowFocusListener(new java.awt.event.WindowFocusListener() {
             public void windowGainedFocus(java.awt.event.WindowEvent evt) {
                 formWindowGainedFocus(evt);
@@ -161,10 +161,12 @@ public class FrmInterfaz1 extends javax.swing.JFrame {
             }
         });
 
-        jTabbedPane1.setBackground(new java.awt.Color(204, 255, 204));
+        jTabbedPane1.setBackground(new java.awt.Color(0, 204, 102));
+        jTabbedPane1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        PestanaLeerarchivo.setBackground(new java.awt.Color(153, 153, 255));
+        PestanaLeerarchivo.setBackground(new java.awt.Color(204, 204, 204));
 
+        BtnCargar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         BtnCargar.setText("Cargar Archivo");
         BtnCargar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -194,31 +196,37 @@ public class FrmInterfaz1 extends javax.swing.JFrame {
         LblTipo1.setForeground(new java.awt.Color(0, 0, 204));
         LblTipo1.setText("___________");
 
-        jLabel11.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
+        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel11.setText("RFC EMISOR:");
 
-        Lbl5.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
+        Lbl5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         Lbl5.setText("Nombre Emisor:");
 
+        LblNombree1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         LblNombree1.setText("___________________________");
 
+        LblRFCE1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         LblRFCE1.setText("___________________________");
 
-        Lbl6.setFont(new java.awt.Font("Book Antiqua", 0, 18)); // NOI18N
+        Lbl6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         Lbl6.setText("Fecha:");
 
+        LblFecha1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         LblFecha1.setText("_______________________");
 
-        jLabel13.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
+        jLabel13.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel13.setText("RFC RECEPTOR:");
 
-        Lbl7.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
+        Lbl7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         Lbl7.setText("Nombre Receptor:");
 
+        LblNombrer1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         LblNombrer1.setText("___________________________");
 
+        LblRFCR1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         LblRFCR1.setText("___________________________");
 
+        RBCombustible.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         RBCombustible.setText("Combustible");
 
         javax.swing.GroupLayout PestanaLeerarchivoLayout = new javax.swing.GroupLayout(PestanaLeerarchivo);
@@ -230,25 +238,10 @@ public class FrmInterfaz1 extends javax.swing.JFrame {
                 .addGroup(PestanaLeerarchivoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PestanaLeerarchivoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(PestanaLeerarchivoLayout.createSequentialGroup()
-                            .addGroup(PestanaLeerarchivoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(PestanaLeerarchivoLayout.createSequentialGroup()
-                                    .addGroup(PestanaLeerarchivoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addGroup(PestanaLeerarchivoLayout.createSequentialGroup()
-                                            .addComponent(Lbl6)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(LblFecha1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addComponent(LblTipo1, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGap(74, 74, 74)
-                                    .addComponent(BtnCargar, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(PestanaLeerarchivoLayout.createSequentialGroup()
-                                    .addComponent(jLabel11)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(LblRFCE1, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(jLabel13)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(LblRFCR1)))
-                            .addGap(128, 128, 128))
+                            .addComponent(LblTipo1, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(74, 74, 74)
+                            .addComponent(BtnCargar, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(316, 316, 316))
                         .addGroup(PestanaLeerarchivoLayout.createSequentialGroup()
                             .addComponent(Lbl5)
                             .addGap(18, 18, 18)
@@ -257,7 +250,22 @@ public class FrmInterfaz1 extends javax.swing.JFrame {
                             .addComponent(Lbl7)
                             .addGap(18, 18, 18)
                             .addComponent(LblNombrer1)
-                            .addGap(116, 116, 116)))
+                            .addGap(116, 116, 116))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, PestanaLeerarchivoLayout.createSequentialGroup()
+                            .addGroup(PestanaLeerarchivoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(PestanaLeerarchivoLayout.createSequentialGroup()
+                                    .addComponent(Lbl6)
+                                    .addGap(44, 44, 44)
+                                    .addComponent(LblFecha1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(PestanaLeerarchivoLayout.createSequentialGroup()
+                                    .addComponent(jLabel11)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(LblRFCE1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jLabel13)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(LblRFCR1)
+                            .addGap(89, 89, 89)))
                     .addGroup(PestanaLeerarchivoLayout.createSequentialGroup()
                         .addGap(381, 381, 381)
                         .addComponent(RBCombustible)))
@@ -268,7 +276,7 @@ public class FrmInterfaz1 extends javax.swing.JFrame {
                     .addGroup(PestanaLeerarchivoLayout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(LblImagen1, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(636, Short.MAX_VALUE))
+                .addContainerGap(608, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PestanaLeerarchivoLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(BtnSalir1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -310,7 +318,7 @@ public class FrmInterfaz1 extends javax.swing.JFrame {
                             .addComponent(LblNombrer1))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(PestanaLeerarchivoLayout.createSequentialGroup()
-                .addContainerGap(18, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(LblImagen1, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -319,13 +327,14 @@ public class FrmInterfaz1 extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Leer Archivo", PestanaLeerarchivo);
 
-        pestanaconsulta.setBackground(new java.awt.Color(153, 153, 255));
+        pestanaconsulta.setBackground(new java.awt.Color(204, 204, 204));
         pestanaconsulta.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 pestanaconsultaFocusGained(evt);
             }
         });
 
+        BtnSalir.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         BtnSalir.setText("Salir");
         BtnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -349,7 +358,10 @@ public class FrmInterfaz1 extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("Busqueda por Fecha:");
+
+        LblImagen3.setBackground(new java.awt.Color(204, 204, 204));
 
         javax.swing.GroupLayout pestanaconsultaLayout = new javax.swing.GroupLayout(pestanaconsulta);
         pestanaconsulta.setLayout(pestanaconsultaLayout);
@@ -386,13 +398,14 @@ public class FrmInterfaz1 extends javax.swing.JFrame {
                     .addGroup(pestanaconsultaLayout.createSequentialGroup()
                         .addGap(42, 42, 42)
                         .addComponent(LblImagen3, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Consulta Del Archivo", pestanaconsulta);
 
-        pestanaGenerarreporte.setBackground(new java.awt.Color(153, 153, 255));
+        pestanaGenerarreporte.setBackground(new java.awt.Color(204, 204, 204));
 
+        jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton1.setText("Generar Reporte");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -400,12 +413,16 @@ public class FrmInterfaz1 extends javax.swing.JFrame {
             }
         });
 
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setText("Elige El Tipo De Reporte");
 
+        cmbxMes.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         cmbxMes.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" }));
 
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel6.setText("Elige El Mes");
 
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel7.setText("Ingresa el año");
 
         TXTanyo.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -414,18 +431,25 @@ public class FrmInterfaz1 extends javax.swing.JFrame {
             }
         });
 
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel8.setText("IMPUESTOS");
 
+        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel9.setText("GANANCIAS");
 
+        Lblimpuesto.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         Lblimpuesto.setText("____________");
 
+        jLabel12.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel12.setText("PERDIDAS");
 
+        Lblganancias.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         Lblganancias.setText("____________");
 
+        LblPerdidas.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         LblPerdidas.setText("____________");
 
+        BtnSALIR.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         BtnSALIR.setText("Salir");
         BtnSALIR.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -434,6 +458,7 @@ public class FrmInterfaz1 extends javax.swing.JFrame {
         });
 
         TipoReporte.add(RBtnMensual);
+        RBtnMensual.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         RBtnMensual.setText("Mensual");
         RBtnMensual.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -442,6 +467,7 @@ public class FrmInterfaz1 extends javax.swing.JFrame {
         });
 
         TipoReporte.add(RBtnAnual);
+        RBtnAnual.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         RBtnAnual.setText("Anual");
         RBtnAnual.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -477,8 +503,7 @@ public class FrmInterfaz1 extends javax.swing.JFrame {
                                         .addComponent(jtxtdir, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(pestanaGenerarreporteLayout.createSequentialGroup()
                                         .addGap(244, 244, 244)
-                                        .addComponent(BtnSALIR)))))
-                        .addGap(502, 563, Short.MAX_VALUE))
+                                        .addComponent(BtnSALIR))))))
                     .addGroup(pestanaGenerarreporteLayout.createSequentialGroup()
                         .addGap(48, 48, 48)
                         .addGroup(pestanaGenerarreporteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -487,10 +512,7 @@ public class FrmInterfaz1 extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(RBtnMensual)
                                 .addGap(18, 18, 18)
-                                .addComponent(RBtnAnual)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton1)
-                                .addGap(629, 629, 629))
+                                .addComponent(RBtnAnual))
                             .addGroup(pestanaGenerarreporteLayout.createSequentialGroup()
                                 .addComponent(jLabel6)
                                 .addGap(18, 18, 18)
@@ -499,7 +521,9 @@ public class FrmInterfaz1 extends javax.swing.JFrame {
                                 .addComponent(jLabel7)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(TXTanyo, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                                .addGap(44, 44, 44)
+                                .addComponent(jButton1)))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 510, Short.MAX_VALUE)
                 .addComponent(LblImagen2, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(342, 342, 342))
         );
@@ -539,16 +563,19 @@ public class FrmInterfaz1 extends javax.swing.JFrame {
                                 .addComponent(cmbxMes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(TXTanyo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pestanaGenerarreporteLayout.createSequentialGroup()
-                        .addGap(72, 72, 72)
+                    .addGroup(pestanaGenerarreporteLayout.createSequentialGroup()
+                        .addGap(83, 83, 83)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(BtnSALIR)))
-                .addContainerGap(175, Short.MAX_VALUE))
+                .addContainerGap(134, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Generar Reporte", pestanaGenerarreporte);
 
+        BtnModificar.setBackground(new java.awt.Color(204, 204, 204));
+
+        jButton2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton2.setText("Modificar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -556,10 +583,19 @@ public class FrmInterfaz1 extends javax.swing.JFrame {
             }
         });
 
+        TxtRfcactivo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                TxtRfcactivoKeyTyped(evt);
+            }
+        });
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("INGRESA TU RFC");
 
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("RFC-ACTIVO");
 
+        RBEditar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         RBEditar.setText("Editar");
 
         javax.swing.GroupLayout BtnModificarLayout = new javax.swing.GroupLayout(BtnModificar);
@@ -567,23 +603,21 @@ public class FrmInterfaz1 extends javax.swing.JFrame {
         BtnModificarLayout.setHorizontalGroup(
             BtnModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(BtnModificarLayout.createSequentialGroup()
+                .addGap(72, 72, 72)
                 .addGroup(BtnModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(BtnModificarLayout.createSequentialGroup()
-                        .addGap(94, 94, 94)
-                        .addComponent(jLabel4)
-                        .addGap(66, 66, 66)
-                        .addComponent(Lblactivo)
-                        .addGap(143, 143, 143)
-                        .addComponent(RBEditar))
+                        .addGap(150, 150, 150)
+                        .addComponent(Lblactivo))
+                    .addComponent(jLabel4)
                     .addGroup(BtnModificarLayout.createSequentialGroup()
-                        .addGap(267, 267, 267)
-                        .addComponent(jButton2))
-                    .addGroup(BtnModificarLayout.createSequentialGroup()
-                        .addGap(72, 72, 72)
                         .addComponent(jLabel3)
-                        .addGap(55, 55, 55)
+                        .addGap(18, 18, 18)
                         .addComponent(TxtRfcactivo, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(1393, Short.MAX_VALUE))
+                .addGap(36, 36, 36)
+                .addGroup(BtnModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton2)
+                    .addComponent(RBEditar))
+                .addContainerGap(1375, Short.MAX_VALUE))
         );
         BtnModificarLayout.setVerticalGroup(
             BtnModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -593,13 +627,12 @@ public class FrmInterfaz1 extends javax.swing.JFrame {
                     .addComponent(jLabel4)
                     .addComponent(Lblactivo)
                     .addComponent(RBEditar))
-                .addGap(56, 56, 56)
-                .addGroup(BtnModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(TxtRfcactivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
                 .addGap(18, 18, 18)
-                .addComponent(jButton2)
-                .addContainerGap(336, Short.MAX_VALUE))
+                .addGroup(BtnModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(TxtRfcactivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2))
+                .addContainerGap(383, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Configuracion", BtnModificar);
@@ -612,12 +645,14 @@ public class FrmInterfaz1 extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 43, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 509, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-private void Cargar() {
+    private void Cargar() {
 
         try {
             //int opa;
@@ -874,21 +909,47 @@ private void Cargar() {
 
     }
 
-
     private void pestanaconsultaGainedFocus(java.awt.event.FocusEvent evt) {
 
     }
     private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
         // TODO add your handling code here:
         try {
+            //Conectamos con la base de datos
+            Conexion mConexion = new Conexion();
+            mConexion.Conectar("localhost", "nose_prueba", "root", "nose");
+        //String impuestos = ("select SUM(Impuesto) as total from recibo_factura where fecha >= '?2-?1-01' and fecha <= '?2-?1-31';");
+            //Realizamos una consulta sobre las tablas
+            String consulta = "select RFC from Usuario where idUsuario=1;";
+            ResultSet listausuario = mConexion.ejecutarConsulta(consulta);
+            // System.out.println(listaClientes.getFloat("Importe"));
 
+            if (listausuario != null) {
+                //Recorremos cada registro de la lista de datos
+                while (listausuario.next()) {
 
+                    this.rfcactivo = listausuario.getString("RFC");
+
+                }
+
+            }
+            this.Lblactivo.setText(rfcactivo);
+
+        } catch (Exception error) {
+            JOptionPane.showMessageDialog(null, "Error al realizar Consulta");
+            System.out.println(error.toString());
+        }
+
+        try {
+
+//            this.cmbxMes.setEnabled(false);
+            //Conectamos con la base de datos
             Conexion mConexion = new Conexion();
             //mConexion.Conectar("localhost", "banco", "user_banco", "13-79");
             mConexion.Conectar("localhost", "nose_prueba", "root", "nose");
             //String impuestos = ("select SUM(Impuesto) as total from recibo_factura where fecha >= '?2-?1-01' and fecha <= '?2-?1-31';");
             //Realizamos una consulta sobre las tablas
-            String consulta = "select * from recibo_factura";
+            String consulta = "select * from recibo_factura where RFC_Receptor = '"+ this.rfcactivo +"' or RFC_Emisor = '"+ this.rfcactivo +"'; ";
             ResultSet listaClientes = mConexion.ejecutarConsulta(consulta);
             // System.out.println(listaClientes.getFloat("Importe"));
 
@@ -913,39 +974,80 @@ private void Cargar() {
         }
     }//GEN-LAST:event_formWindowGainedFocus
 
-    public void consultar() throws SQLException, Exception {
+    public void consultar() throws Exception {
 
-        //Conectamos con la base de datos
-        Conexion mConexion = new Conexion();
-        //mConexion.Conectar("localhost", "banco", "user_banco", "13-79");
-        mConexion.Conectar("localhost", "nose_prueba", "root", "nose");
+        try {
+            //Conectamos con la base de datos
+            Conexion mConexion = new Conexion();
+            mConexion.Conectar("localhost", "nose_prueba", "root", "nose");
         //String impuestos = ("select SUM(Impuesto) as total from recibo_factura where fecha >= '?2-?1-01' and fecha <= '?2-?1-31';");
-        //Realizamos una consulta sobre las tablas
-        String consulta = "select rfc from usuarios where id=1";
-        ResultSet listausuario = mConexion.ejecutarConsulta(consulta);
-        // System.out.println(listaClientes.getFloat("Importe"));
+            //Realizamos una consulta sobre las tablas
+            String consulta = "select RFC from Usuario where idUsuario=1";
+            ResultSet listausuario = mConexion.ejecutarConsulta(consulta);
+            // System.out.println(listaClientes.getFloat("Importe"));
 
-        if (listausuario != null) {
-            //Recorremos cada registro de la lista de datos
-            while (listausuario.next()) {
-                {
-                    this.rfcactivo = listausuario.getString("rfc");
+            if (listausuario != null) {
+                //Recorremos cada registro de la lista de datos
+                while (listausuario.next()) {
+
+                    this.rfcactivo = listausuario.getString("RFC");
 
                 }
+
             }
 
+        } catch (Exception error) {
+            JOptionPane.showMessageDialog(null, "Error al realizar Consulta");
+            System.out.println(error.toString());
         }
     }
 
     public void insertarusuario(int id, String rfc) {
-       
+        try {
+
+            Conexion mConexion = new Conexion();
+
+            mConexion.Conectar("localhost", "nose_prueba", "root", "nose");
+
+            //Formamos una instruccion DML -INSERT
+            String INSERT = "insert into Usuario values ('?1','?2')";
+            INSERT = INSERT.replace("?1", String.valueOf(id));
+            INSERT = INSERT.replace("?2", String.valueOf(rfc));
+            //Llamamos al metodo que se encuentra en la clase conexión en el packete BaseDatos
+            mConexion.ejecutarActualizacion(INSERT);
+            JOptionPane.showMessageDialog(this, "guardado");
+            //            this.setVisible(false);
+        } catch (Exception ex) {
+            Logger.getLogger(FrmInterfaz1.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }
+
     public void actualizarusuario(int id, String rfc) {
+        try {
+
+            Conexion mConexion = new Conexion();
+            try {
+                mConexion.Conectar("localhost", "nose_prueba", "root", "nose");
+            } catch (Exception ex) {
+                Logger.getLogger(FrmInterfaz1.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            //Formamos una instruccion DML -INSERT
+            String INSERT = "update usuario set idUsuario='?1', RFC='?2'  where idUsuario= 1";
+            INSERT = INSERT.replace("?1", String.valueOf(id));
+            INSERT = INSERT.replace("?2", String.valueOf(rfc));
+            //Llamamos al metodo que se encuentra en la clase conexión en el packete BaseDatos
+            mConexion.ejecutarActualizacion(INSERT);
+            JOptionPane.showMessageDialog(this, "guardado");
+            //            this.setVisible(false);
+
+        } catch (SQLException ex) {
+            Logger.getLogger(FrmInterfaz1.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }
-    
-    
+
+
     private void RBtnAnualMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RBtnAnualMouseClicked
         // TODO add your handling code here:
         if (this.RBtnAnual.isSelected()) {
@@ -1298,7 +1400,57 @@ private void Cargar() {
                     }
                 }
             }
+        } else if (this.RBtnAnual.isSelected()) {
+            if ((this.TXTanyo.getText().equals("")) || ((Integer.parseInt(this.TXTanyo.getText())) > Calendario.getWeekYear())) {
+                JOptionPane.showMessageDialog(null, "Error");
+            } else {
+                anyo = this.TXTanyo.getText();
+                this.Ganancia = mCalculos.GananciasAnuales(anyo);
+                this.Perdida = mCalculos.PerdidasAnuales(anyo);
+                this.impuesto = mCalculos.ImpuestosAnuales(anyo);
 
+                this.Lblganancias.setText(String.valueOf(Ganancia));
+                this.LblPerdidas.setText(String.valueOf(Perdida));
+                this.Lblimpuesto.setText(String.valueOf(impuesto));
+
+                try {
+                    JOptionPane.showMessageDialog(this, "Selecciona La Ruta En Donde Se Guardará El Reporte");
+
+                    JFileChooser dlg = new JFileChooser();
+                    int option = dlg.showSaveDialog(this);
+                    Image imagen = Image.getInstance("C:\\Users\\Acer\\Documents\\Septimo Semestre\\Nacho-Scrum\\Pruebas_Nose\\PruebasN\\Nose\\src\\IMG-20171104-WA0004.jpg");
+                    imagen.setAbsolutePosition(400f, 650f);
+                    imagen.scalePercent(30f);
+                    imagen.setAlignment(Element.ALIGN_RIGHT);
+
+                    if (option == JFileChooser.APPROVE_OPTION) {
+
+                        File f = dlg.getSelectedFile();
+                        f1 = f.toString();
+                        this.jtxtdir.setText(f1);
+
+                    }
+                    String a = "Reporte del año" + this.TXTanyo.getText() + "\n" + "Impuestos mensuales: " + this.Lblimpuesto.getText() + "\n Ganancias Mensuales: " + this.Lblganancias.getText() + "\n Pedidas Mensuales: " + this.LblPerdidas.getText();
+                    FileOutputStream archivo = new FileOutputStream(f1 + ".pdf");
+                    Document doc = new Document();
+                    PdfWriter.getInstance(doc, archivo);
+                    doc.open();
+                    Font fuente = new Font();
+                    fuente.setSize(18);
+                    fuente.setFamily(FontFamily.TIMES_ROMAN.toString());
+                    doc.add(imagen);
+                    doc.add(new Paragraph(a, fuente));
+                    doc.close();
+                    //   JOptionPane.showMessageDialog(null, "Documento creado con exito");
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "error" + e);
+                }
+
+                JOptionPane.showMessageDialog(null, "Reporte Anual");
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Porfavor seleccione si el reporte es Mensual ó Anual");
         }
 
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -1334,7 +1486,8 @@ private void Cargar() {
     }//GEN-LAST:event_BtnSalir1ActionPerformed
 
     private void BtnCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCargarActionPerformed
- try {
+
+        try {
             //rfcactivo=this.consultar();
             // TODO add your handling code here:
             if (this.Lblactivo.getText().equals("")) {
@@ -1358,19 +1511,49 @@ private void Cargar() {
         } catch (Exception ex) {
             Logger.getLogger(FrmInterfaz1.class.getName()).log(Level.SEVERE, null, ex);
         }
-        // TODO add your handling code here:
-        //LBLACTIVO
-
     }//GEN-LAST:event_BtnCargarActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 
         // TODO add your handling code here:
-        //RBEditar
+        if (this.RBEditar.isSelected()) {
 
+            if (this.TxtRfcactivo.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "No Ingresaste nada");
+
+            } else {
+                int a = JOptionPane.showConfirmDialog(rootPane, "Estas Seguro Que Tu Rfc Es Correcto (Esto puede generar que no se realizen los calculos si esta incorrecto tu rfc)");
+                if (a == 0) {
+
+                    this.Lblactivo.setText(this.TxtRfcactivo.getText());
+                    this.actualizarusuario(1, TxtRfcactivo.getText());
+                }
+            }
+
+        } else if (this.RBEditar.isEnabled()) {
+
+            JOptionPane.showMessageDialog(null, "Por seguridad Favor De Palomear El Editar");
+
+        }
 
 
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void TxtRfcactivoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtRfcactivoKeyTyped
+        // TODO add your handling code here:
+        this.TxtRfcactivo.addKeyListener(new KeyAdapter(){
+            public void keyTyped(KeyEvent e){
+            char character = e.getKeyChar();
+        
+                if(Character.isLowerCase(character)){
+                    e.setKeyChar(Character.toUpperCase(character));
+
+                }
+            }
+        });
+
+
+    }//GEN-LAST:event_TxtRfcactivoKeyTyped
 
     /**
      * @param args the command line arguments
