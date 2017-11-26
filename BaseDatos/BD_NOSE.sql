@@ -21,3 +21,9 @@ CREATE TABLE Recibo_Factura (
   Metodo_Pago VARCHAR (100) NOT NULL,
   PRIMARY KEY(Folio)
 );
+
+CREATE TABLE Usuario (
+  idUsuario INTEGER NOT NULL ,
+  RFC VARCHAR (100) NOT NULL,
+  PRIMARY KEY(idUsuario)
+);
