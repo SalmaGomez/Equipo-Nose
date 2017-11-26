@@ -1560,6 +1560,12 @@ public class FrmInterfaz1 extends javax.swing.JFrame {
                 }
             }
         });
+   Character s;
+
+        s = evt.getKeyChar();
+        if (!Character.isLetter(s) && s != KeyEvent.VK_0&& s != KeyEvent.VK_1&& s != KeyEvent.VK_2&& s != KeyEvent.VK_3&& s != KeyEvent.VK_4&& s != KeyEvent.VK_5&& s != KeyEvent.VK_6&& s != KeyEvent.VK_7&& s != KeyEvent.VK_8&& s != KeyEvent.VK_9) {
+            evt.consume();
+        }
 
 
     }//GEN-LAST:event_TxtRfcactivoKeyTyped
