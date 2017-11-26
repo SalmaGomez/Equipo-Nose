@@ -62,8 +62,8 @@ public class Calculos {
         try {
             // fecha = "Cmbanyo.getText()+"-"+CmbMes.getText()";
             Conexion mConexion = new Conexion();
-            mConexion.Conectar("localhost", "nose_prueba", "root", "nose");
-            String impuestos = ("select SUM(Impuesto) as total from recibo_factura where fecha >= '?2-?1-01' and fecha <= '?2-?1-31' and Tipo='Recibo';");
+            mConexion.Conectar("localhost", "noseprueba", "root", "1234");
+            String impuestos = ("select SUM(Impuesto) as total from Recibo_Factura where fecha >= '?2-?1-01' and fecha <= '?2-?1-31' and Tipo='Recibo';");
             impuestos = impuestos.replace("?1", mes);
             impuestos = impuestos.replace("?2", anyo);
             ResultSet listaimpuestos = mConexion.ejecutarConsulta(impuestos);
@@ -88,8 +88,8 @@ public class Calculos {
         try {
             // fecha = "Cmbanyo.getText()+"-"+CmbMes.getText()";
             Conexion mConexion = new Conexion();
-            mConexion.Conectar("localhost", "nose_prueba", "root", "nose");
-            String impuestosf = ("select SUM(Impuesto) as total from recibo_factura where fecha >= '?2-?1-01' and fecha <= '?2-?1-31' and Tipo='Factura';");
+            mConexion.Conectar("localhost", "noseprueba", "root", "1234");
+            String impuestosf = ("select SUM(Impuesto) as total from Recibo_Factura where fecha >= '?2-?1-01' and fecha <= '?2-?1-31' and Tipo='Factura';");
             impuestosf = impuestosf.replace("?1", mes);
             impuestosf = impuestosf.replace("?2", anyo);
             ResultSet listaimpuestosf = mConexion.ejecutarConsulta(impuestosf);
@@ -126,7 +126,7 @@ public class Calculos {
         try {
             // fecha = "Cmbanyo.getText()+"-"+CmbMes.getText()";
             Conexion mConexion = new Conexion();
-            mConexion.Conectar("localhost", "nose_prueba", "root", "nose");
+            mConexion.Conectar("localhost", "noseprueba", "root", "1234");
             String impuestos = ("select SUM(Impuestos) as total from resultados where Fecha >= '?2-01-01' and Fecha <= '?2-12-31';");
             impuestos = impuestos.replace("?2", anyo);
             ResultSet listaimpuestosA = mConexion.ejecutarConsulta(impuestos);
@@ -152,7 +152,7 @@ public class Calculos {
           try {
             // fecha = "Cmbanyo.getText()+"-"+CmbMes.getText()";
             Conexion mConexion = new Conexion();
-            mConexion.Conectar("localhost", "nose_prueba", "root", "nose");
+            mConexion.Conectar("localhost", "noseprueba", "root", "1234");
             String impuestos = ("select SUM(Ganancias) as total from resultados where Fecha >= '?2-01-01' and Fecha <= '?2-12-31';");
             impuestos = impuestos.replace("?2", anyo);
             ResultSet listaimpuestosA = mConexion.ejecutarConsulta(impuestos);
@@ -178,7 +178,7 @@ public class Calculos {
           try {
             // fecha = "Cmbanyo.getText()+"-"+CmbMes.getText()";
             Conexion mConexion = new Conexion();
-            mConexion.Conectar("localhost", "nose_prueba", "root", "nose");
+            mConexion.Conectar("localhost", "noseprueba", "root", "1234");
             String impuestos = ("select SUM(Perdidas) as total from resultados where Fecha >= '?2-01-01' and Fecha <= '?2-12-31';");
             impuestos = impuestos.replace("?2", anyo);
             ResultSet listaimpuestosPA = mConexion.ejecutarConsulta(impuestos);
