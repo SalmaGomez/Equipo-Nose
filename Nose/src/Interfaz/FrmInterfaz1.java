@@ -1470,6 +1470,11 @@ public class FrmInterfaz1 extends javax.swing.JFrame {
     private void TxtBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtBuscarKeyTyped
         // TODO add your handling code here:
 
+        char caracter = evt.getKeyChar();
+        if (((caracter < '0') || (caracter > '9')) && (caracter != KeyEvent.VK_BACK_SPACE)&&(caracter != '-')) {
+            evt.consume();
+            JOptionPane.showMessageDialog(rootPane, "Ingresar solo numeros");
+        }
         TxtBuscar.addKeyListener(new KeyAdapter() {
             public void keyReleased(final KeyEvent e) {
                 String cadena = (TxtBuscar.getText());
@@ -1481,6 +1486,8 @@ public class FrmInterfaz1 extends javax.swing.JFrame {
         trsFiltro = new TableRowSorter(this.TFacturasRecibos.getModel());
         TFacturasRecibos.setRowSorter(trsFiltro);
         trsFiltro.setRowFilter(RowFilter.regexFilter(TxtBuscar.getText(), 1));
+        
+        char car = evt.getKeyChar();
     }//GEN-LAST:event_TxtBuscarKeyTyped
 
     private void BtnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSalirActionPerformed
