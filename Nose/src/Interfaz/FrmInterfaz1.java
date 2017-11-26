@@ -1078,6 +1078,11 @@ public class FrmInterfaz1 extends javax.swing.JFrame {
             evt.consume();
             JOptionPane.showMessageDialog(rootPane, "Ingresar solo numeros");
         }
+        
+        if (this.TXTanyo.getText().length()== 4){
+ 
+            evt.consume();
+        }
     }//GEN-LAST:event_TXTanyoKeyTyped
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -1541,6 +1546,10 @@ public class FrmInterfaz1 extends javax.swing.JFrame {
 
     private void TxtRfcactivoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtRfcactivoKeyTyped
         // TODO add your handling code here:
+                 if (this.TxtRfcactivo.getText().length()== 10){
+ 
+            evt.consume();
+        }
         this.TxtRfcactivo.addKeyListener(new KeyAdapter(){
             public void keyTyped(KeyEvent e){
             char character = e.getKeyChar();
@@ -1549,9 +1558,11 @@ public class FrmInterfaz1 extends javax.swing.JFrame {
                     e.setKeyChar(Character.toUpperCase(character));
 
                 }
+                
             }
+            
+            
         });
-
 
     }//GEN-LAST:event_TxtRfcactivoKeyTyped
 
