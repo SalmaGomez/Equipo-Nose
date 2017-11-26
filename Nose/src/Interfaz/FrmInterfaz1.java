@@ -87,6 +87,8 @@ public class FrmInterfaz1 extends javax.swing.JFrame {
         Icon icono3 = new ImageIcon(imagen.getImage().getScaledInstance(this.LblImagen3.getWidth(), this.LblImagen3.getHeight(), 100));
         this.LblImagen3.setIcon(icono);
         this.repaint();
+        rfcactivo = "";
+        JOptionPane.showMessageDialog(null, "BienVenido A Nose~Soft");
 
     }
 
@@ -919,7 +921,6 @@ public class FrmInterfaz1 extends javax.swing.JFrame {
     private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
         // TODO add your handling code here:
         try {
-
             if (this.RBtnMensual.isSelected()) {
                 this.TXTanyo.setEnabled(true);
                 this.cmbxMes.setEnabled(true);
@@ -961,6 +962,21 @@ public class FrmInterfaz1 extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Error al realizar Consulta");
             System.out.println(error.toString());
         }
+        
+            if (rfcactivo == "") {
+
+                rfcactivo = JOptionPane.showInputDialog(null, "Favor De Ingresar Tu RFC");
+                if (rfcactivo.length() == 13) {
+                    JOptionPane.showMessageDialog(null, "A Ingresado Un RFC Aceptado Recuerde Que Lo Puede Modificar en La Pestana Configuracion Por Si Se Equivoco En Un Dato");
+
+                    this.Lblactivo.setText(rfcactivo);
+                    this.insertarusuario(1, rfcactivo);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Favor De Ingresar Tu RFC Con 13 Caracteres");
+                    rfcactivo = "";
+                }
+            }
+
 
         try {
 
@@ -1515,30 +1531,17 @@ public class FrmInterfaz1 extends javax.swing.JFrame {
 
     private void BtnCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCargarActionPerformed
 
-        try {
-            //rfcactivo=this.consultar();
-            // TODO add your handling code here:
-            if (this.Lblactivo.getText().equals("")) {
-
-                rfcactivo = JOptionPane.showInputDialog(null, "Favor De Ingresar Tu RFC");
-                this.Lblactivo.setText(rfcactivo);
-                this.insertarusuario(1, rfcactivo);
-            } else {
-
-                if (entradafac == 0) {
-                    Cargar();
-                } else if (entradafac > 0) {
-                    int a = JOptionPane.showConfirmDialog(rootPane, "Seguro que quieres cargar otra factura o recibo?");
-                    if (a == 0) {
-                        Cargar();
-                    }
-
-                }
-                entradafac = 1;
+        if (entradafac == 0) {
+            Cargar();
+        } else if (entradafac > 0) {
+            int a = JOptionPane.showConfirmDialog(rootPane, "Seguro que quieres cargar otra factura o recibo?");
+            if (a == 0) {
+                Cargar();
             }
-        } catch (Exception ex) {
-            Logger.getLogger(FrmInterfaz1.class.getName()).log(Level.SEVERE, null, ex);
+
         }
+        entradafac = 1;
+        //}
     }//GEN-LAST:event_BtnCargarActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -1549,12 +1552,16 @@ public class FrmInterfaz1 extends javax.swing.JFrame {
             if (this.TxtRfcactivo.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "Favor De Ingresar Tu RFC");
 
-            } else {
+            } else if (TxtRfcactivo.getText().length() == 13) {
+
                 int a = JOptionPane.showConfirmDialog(rootPane, "Estas Seguro Que Tu Rfc Es Correcto (Esto puede generar que no se realizen los calculos si esta incorrecto tu rfc)");
                 if (a == 0) {
 
                     this.Lblactivo.setText(this.TxtRfcactivo.getText());
                     this.actualizarusuario(1, TxtRfcactivo.getText());
+                } else {
+                    JOptionPane.showMessageDialog(null, "Favor De Ingresar Tu RFC Con 13 Caracteres");
+                  
                 }
             }
 
