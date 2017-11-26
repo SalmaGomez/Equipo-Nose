@@ -350,6 +350,7 @@ public class FrmInterfaz1 extends javax.swing.JFrame {
 
             }
         ));
+        TFacturasRecibos.setEnabled(false);
         jScrollPane1.setViewportView(TFacturasRecibos);
 
         TxtBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -568,7 +569,7 @@ public class FrmInterfaz1 extends javax.swing.JFrame {
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(BtnSALIR)))
-                .addContainerGap(134, Short.MAX_VALUE))
+                .addContainerGap(128, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Generar Reporte", pestanaGenerarreporte);
@@ -586,6 +587,9 @@ public class FrmInterfaz1 extends javax.swing.JFrame {
         TxtRfcactivo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 TxtRfcactivoKeyTyped(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                TxtRfcactivoKeyReleased(evt);
             }
         });
 
@@ -632,7 +636,7 @@ public class FrmInterfaz1 extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(TxtRfcactivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2))
-                .addContainerGap(383, Short.MAX_VALUE))
+                .addContainerGap(374, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Configuracion", BtnModificar);
@@ -711,7 +715,7 @@ public class FrmInterfaz1 extends javax.swing.JFrame {
                      LblRFCR.setText(rfcr);
                      this.LblRFCE.setText(rfce);*/
 
-                    /* //Esto es para insertar osease guardar en la base los datos
+ /* //Esto es para insertar osease guardar en la base los datos
                      try {
                      //Conectamos con la base de datos
                      Conexion mConexion = new Conexion();
@@ -915,19 +919,28 @@ public class FrmInterfaz1 extends javax.swing.JFrame {
     private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
         // TODO add your handling code here:
         try {
-            if(this.RBtnMensual.isSelected()){
-            this.TXTanyo.setEnabled(false);
-               this.cmbxMes.setEnabled(true);
-               this.TXTanyo.setText("");
-            }else if(this.RBtnAnual.isSelected()){
-        this.cmbxMes.setEnabled(false);
-         this.TXTanyo.setEnabled(true);
-            
+
+            if (this.RBtnMensual.isSelected()) {
+                this.TXTanyo.setEnabled(true);
+                this.cmbxMes.setEnabled(true);
+                this.TXTanyo.setText("");
+            } else if (this.RBtnAnual.isSelected()) {
+                this.cmbxMes.setEnabled(false);
+                this.TXTanyo.setEnabled(true);
+
+            }
+            if (this.RBEditar.isSelected()) {
+                this.TxtRfcactivo.setEnabled(true);
+
+            } else {
+
+                this.TxtRfcactivo.setEnabled(false);
+
             }
             //Conectamos con la base de datos
             Conexion mConexion = new Conexion();
             mConexion.Conectar("localhost", "noseprueba", "root", "1234");
-        //String impuestos = ("select SUM(Impuesto) as total from Recibo_Factura where fecha >= '?2-?1-01' and fecha <= '?2-?1-31';");
+            //String impuestos = ("select SUM(Impuesto) as total from Recibo_Factura where fecha >= '?2-?1-01' and fecha <= '?2-?1-31';");
             //Realizamos una consulta sobre las tablas
             String consulta = "select RFC from Usuario where idUsuario=1;";
             ResultSet listausuario = mConexion.ejecutarConsulta(consulta);
@@ -958,7 +971,7 @@ public class FrmInterfaz1 extends javax.swing.JFrame {
             mConexion.Conectar("localhost", "noseprueba", "root", "1234");
             //String impuestos = ("select SUM(Impuesto) as total from Recibo_Factura where fecha >= '?2-?1-01' and fecha <= '?2-?1-31';");
             //Realizamos una consulta sobre las tablas
-            String consulta = "select * from Recibo_Factura where RFC_Receptor = '"+ this.rfcactivo +"' or RFC_Emisor = '"+ this.rfcactivo +"'; ";
+            String consulta = "select * from Recibo_Factura where RFC_Receptor = '" + this.rfcactivo + "' or RFC_Emisor = '" + this.rfcactivo + "'; ";
             ResultSet listaClientes = mConexion.ejecutarConsulta(consulta);
             // System.out.println(listaClientes.getFloat("Importe"));
 
@@ -989,7 +1002,7 @@ public class FrmInterfaz1 extends javax.swing.JFrame {
             //Conectamos con la base de datos
             Conexion mConexion = new Conexion();
             mConexion.Conectar("localhost", "noseprueba", "root", "1234");
-        //String impuestos = ("select SUM(Impuesto) as total from Recibo_Factura where fecha >= '?2-?1-01' and fecha <= '?2-?1-31';");
+            //String impuestos = ("select SUM(Impuesto) as total from Recibo_Factura where fecha >= '?2-?1-01' and fecha <= '?2-?1-31';");
             //Realizamos una consulta sobre las tablas
             String consulta = "select RFC from Usuario where idUsuario=1";
             ResultSet listausuario = mConexion.ejecutarConsulta(consulta);
@@ -1087,8 +1100,8 @@ public class FrmInterfaz1 extends javax.swing.JFrame {
             evt.consume();
             JOptionPane.showMessageDialog(rootPane, "Ingresar solo numeros");
         }
-        if (this.TXTanyo.getText().length()== 4){
- 
+        if (this.TXTanyo.getText().length() == 4) {
+
             evt.consume();
         }
     }//GEN-LAST:event_TXTanyoKeyTyped
@@ -1098,135 +1111,135 @@ public class FrmInterfaz1 extends javax.swing.JFrame {
         //String d = jtxtdir.getText();
         this.cmbxMes.setEnabled(true);
 
-            mes = (String) this.cmbxMes.getSelectedItem();
+        mes = (String) this.cmbxMes.getSelectedItem();
 
-            //this.jPanel1.add(imagen);
-            //this.jPanel1.repaint();
-            if (mes == "Enero") {
-                mes = String.valueOf("01");
-            } else if (mes == "Febrero") {
-                mes = String.valueOf("02");
-            } else if (mes == "Marzo") {
-                mes = String.valueOf("03");
-            } else if (mes == "Abril") {
-                mes = String.valueOf("04");
-            } else if (mes == "Mayo") {
-                mes = String.valueOf("05");
-            } else if (mes == "Junio") {
-                mes = String.valueOf("06");
-            } else if (mes == "Julio") {
-                mes = String.valueOf("07");
-            } else if (mes == "Agosto") {
-                mes = String.valueOf("08");
-            } else if (mes == "Septiembre") {
-                mes = String.valueOf("09");
-            } else if (mes == "Octubre") {
-                mes = String.valueOf("10");
-            } else if (mes == "Noviembre") {
-                mes = String.valueOf("11");
-            } else if (mes == "Diciembre") {
-                mes = String.valueOf("12");
+        //this.jPanel1.add(imagen);
+        //this.jPanel1.repaint();
+        if (mes == "Enero") {
+            mes = String.valueOf("01");
+        } else if (mes == "Febrero") {
+            mes = String.valueOf("02");
+        } else if (mes == "Marzo") {
+            mes = String.valueOf("03");
+        } else if (mes == "Abril") {
+            mes = String.valueOf("04");
+        } else if (mes == "Mayo") {
+            mes = String.valueOf("05");
+        } else if (mes == "Junio") {
+            mes = String.valueOf("06");
+        } else if (mes == "Julio") {
+            mes = String.valueOf("07");
+        } else if (mes == "Agosto") {
+            mes = String.valueOf("08");
+        } else if (mes == "Septiembre") {
+            mes = String.valueOf("09");
+        } else if (mes == "Octubre") {
+            mes = String.valueOf("10");
+        } else if (mes == "Noviembre") {
+            mes = String.valueOf("11");
+        } else if (mes == "Diciembre") {
+            mes = String.valueOf("12");
+        }
+
+        if ((this.TXTanyo.getText().equals(""))) {
+            JOptionPane.showMessageDialog(null, "Campos Vacios");
+        } else if (((Integer.parseInt(this.TXTanyo.getText())) > Calendario.getWeekYear()) && ((Integer.parseInt(mes) > Calendario.get(Calendar.MONTH)))) {
+            JOptionPane.showMessageDialog(null, "Verifica tu fecha");
+        } else if (((Integer.parseInt(this.TXTanyo.getText())) == Calendario.getWeekYear()) && ((Integer.parseInt(mes) > Calendario.get(Calendar.MONTH)))) {
+            JOptionPane.showMessageDialog(null, " Upss Verifica tu mes");
+        } else if (((Integer.parseInt(this.TXTanyo.getText())) < Calendario.getWeekYear())) {
+
+            System.out.println(mes);
+            anyo = this.TXTanyo.getText();
+            mCalculos = new Calculos();
+            result = mCalculos.ImpuestosMensuales(mes, anyo);
+            result2 = mCalculos.ImpuestosMensualesF(mes, anyo);
+
+            if ((result == 0) && (result2 == 0)) {
+                JOptionPane.showMessageDialog(null, "no existen facturas ni recibos en esta fecha");
+            } else {
+
+                this.Lblimpuesto.setText(String.valueOf(result + result2));
+
+                Ganacias = mCalculos.CalcularGananciasPerdidasMensuales();
+                if (Ganacias > 0) {
+                    this.Lblganancias.setText(String.valueOf(Ganacias));
+                    this.LblPerdidas.setText("0");
+                    this.Ganancia = Ganacias;
+                    this.Perdida = 0;
+
+                } else if (Ganacias < 0) {
+                    this.Lblganancias.setText("0");
+                    this.LblPerdidas.setText(String.valueOf(Ganacias));
+                    this.Perdida = Ganacias;
+                    this.Ganacias = 0;
+
+                }
+                System.out.println(result);
+                Fecha = anyo + "-" + mes + "-" + "01";
+                System.out.println(Fecha);
+                System.out.println(Ganacias);
+                System.out.println(Perdida);
+
+                try {
+                    //Conectamos con la base de datos
+
+                    Conexion mConexion = new Conexion();
+                    mConexion.Conectar("localhost", "nose_prueba", "root", "nose");
+                    //Formamos una instruccion DML -INSERT
+                    String INSERT = "insert into resultados values (?1,'?2','?3','?4','?5','?6')";
+                    INSERT = INSERT.replace("?1", String.valueOf("null"));
+                    INSERT = INSERT.replace("?2", String.valueOf(result + result2));
+                    INSERT = INSERT.replace("?3", String.valueOf(Ganacias));
+                    INSERT = INSERT.replace("?4", String.valueOf(Perdida));
+                    INSERT = INSERT.replace("?5", "0");//Esto ya no va
+                    INSERT = INSERT.replace("?6", Fecha);
+                    System.out.println(INSERT);
+                    //Llamamos al metodo que se encuentra en la clase conexión en el packete BaseDatos
+                    mConexion.ejecutarActualizacion(INSERT);
+                    JOptionPane.showMessageDialog(this, "guardado");
+                    //            this.setVisible(false);
+
+                } catch (Exception error) {
+                    JOptionPane.showMessageDialog(this, "Error de guardar en la base de datos puede ser que ya se aya guardado en la base de datos");
+                    System.out.println(error.toString());
+                }
+                // String a=this.jtxtcont.getText();
+                try {
+                    JOptionPane.showMessageDialog(this, "Selecciona La Ruta En Donde Se Guardará El Reporte");
+
+                    JFileChooser dlg = new JFileChooser();
+                    int option = dlg.showSaveDialog(this);
+                    Image imagen = Image.getInstance("C:\\Users\\Acer\\Documents\\Septimo Semestre\\Nacho-Scrum\\Pruebas_Nose\\PruebasN\\Nose\\src\\IMG-20171104-WA0004.jpg");
+                    imagen.setAbsolutePosition(400f, 650f);
+                    imagen.scalePercent(30f);
+                    imagen.setAlignment(Element.ALIGN_RIGHT);
+
+                    if (option == JFileChooser.APPROVE_OPTION) {
+
+                        File f = dlg.getSelectedFile();
+                        f1 = f.toString();
+                        this.jtxtdir.setText(f1);
+
+                    }
+                    String a = "Reporte del mes de " + this.cmbxMes.getSelectedItem().toString() + " " + this.TXTanyo.getText() + "\n" + "Impuestos mensuales: " + this.Lblimpuesto.getText() + "\n Ganancias Mensuales: " + this.Lblganancias.getText() + "\n Pedidas Mensuales: " + this.LblPerdidas.getText();
+                    FileOutputStream archivo = new FileOutputStream(f1 + ".pdf");
+                    Document doc = new Document();
+                    PdfWriter.getInstance(doc, archivo);
+                    doc.open();
+                    Font fuente = new Font();
+                    fuente.setSize(18);
+                    fuente.setFamily(FontFamily.TIMES_ROMAN.toString());
+                    doc.add(imagen);
+                    doc.add(new Paragraph(a, fuente));
+                    doc.close();
+                    //   JOptionPane.showMessageDialog(null, "Documento creado con exito");
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "error" + e);
+                }
             }
 
-            if ((this.TXTanyo.getText().equals(""))) {
-                JOptionPane.showMessageDialog(null, "Campos Vacios");
-            } else if (((Integer.parseInt(this.TXTanyo.getText())) > Calendario.getWeekYear()) && ((Integer.parseInt(mes) > Calendario.get(Calendar.MONTH)))) {
-                JOptionPane.showMessageDialog(null, "Verifica tu fecha");
-            } else if (((Integer.parseInt(this.TXTanyo.getText())) == Calendario.getWeekYear()) && ((Integer.parseInt(mes) > Calendario.get(Calendar.MONTH)))) {
-                JOptionPane.showMessageDialog(null, " Upss Verifica tu mes");
-            } else if (((Integer.parseInt(this.TXTanyo.getText())) < Calendario.getWeekYear())) {
-
-                System.out.println(mes);
-                anyo = this.TXTanyo.getText();
-                mCalculos = new Calculos();
-                result = mCalculos.ImpuestosMensuales(mes, anyo);
-                result2 = mCalculos.ImpuestosMensualesF(mes, anyo);
-
-                if ((result == 0) && (result2 == 0)) {
-                    JOptionPane.showMessageDialog(null, "no existen facturas ni recibos en esta fecha");
-                } else {
-
-                    this.Lblimpuesto.setText(String.valueOf(result + result2));
-
-                    Ganacias = mCalculos.CalcularGananciasPerdidasMensuales();
-                    if (Ganacias > 0) {
-                        this.Lblganancias.setText(String.valueOf(Ganacias));
-                        this.LblPerdidas.setText("0");
-                        this.Ganancia = Ganacias;
-                        this.Perdida = 0;
-
-                    } else if (Ganacias < 0) {
-                        this.Lblganancias.setText("0");
-                        this.LblPerdidas.setText(String.valueOf(Ganacias));
-                        this.Perdida = Ganacias;
-                        this.Ganacias = 0;
-
-                    }
-                    System.out.println(result);
-                    Fecha = anyo + "-" + mes + "-" + "01";
-                    System.out.println(Fecha);
-                    System.out.println(Ganacias);
-                    System.out.println(Perdida);
-
-                    try {
-                        //Conectamos con la base de datos
-
-                        Conexion mConexion = new Conexion();
-                        mConexion.Conectar("localhost", "nose_prueba", "root", "nose");
-                        //Formamos una instruccion DML -INSERT
-                        String INSERT = "insert into resultados values (?1,'?2','?3','?4','?5','?6')";
-                        INSERT = INSERT.replace("?1", String.valueOf("null"));
-                        INSERT = INSERT.replace("?2", String.valueOf(result + result2));
-                        INSERT = INSERT.replace("?3", String.valueOf(Ganacias));
-                        INSERT = INSERT.replace("?4", String.valueOf(Perdida));
-                        INSERT = INSERT.replace("?5", "0");//Esto ya no va
-                        INSERT = INSERT.replace("?6", Fecha);
-                        System.out.println(INSERT);
-                        //Llamamos al metodo que se encuentra en la clase conexión en el packete BaseDatos
-                        mConexion.ejecutarActualizacion(INSERT);
-                        JOptionPane.showMessageDialog(this, "guardado");
-                        //            this.setVisible(false);
-
-                    } catch (Exception error) {
-                        JOptionPane.showMessageDialog(this, "Error de guardar en la base de datos puede ser que ya se aya guardado en la base de datos");
-                        System.out.println(error.toString());
-                    }
-                    // String a=this.jtxtcont.getText();
-                    try {
-                        JOptionPane.showMessageDialog(this, "Selecciona La Ruta En Donde Se Guardará El Reporte");
-
-                        JFileChooser dlg = new JFileChooser();
-                        int option = dlg.showSaveDialog(this);
-                        Image imagen = Image.getInstance("C:\\Users\\Acer\\Documents\\Septimo Semestre\\Nacho-Scrum\\Pruebas_Nose\\PruebasN\\Nose\\src\\IMG-20171104-WA0004.jpg");
-                        imagen.setAbsolutePosition(400f, 650f);
-                        imagen.scalePercent(30f);
-                        imagen.setAlignment(Element.ALIGN_RIGHT);
-
-                        if (option == JFileChooser.APPROVE_OPTION) {
-
-                            File f = dlg.getSelectedFile();
-                            f1 = f.toString();
-                            this.jtxtdir.setText(f1);
-
-                        }
-                        String a = "Reporte del mes de " + this.cmbxMes.getSelectedItem().toString() + " " + this.TXTanyo.getText() + "\n" + "Impuestos mensuales: " + this.Lblimpuesto.getText() + "\n Ganancias Mensuales: " + this.Lblganancias.getText() + "\n Pedidas Mensuales: " + this.LblPerdidas.getText();
-                        FileOutputStream archivo = new FileOutputStream(f1 + ".pdf");
-                        Document doc = new Document();
-                        PdfWriter.getInstance(doc, archivo);
-                        doc.open();
-                        Font fuente = new Font();
-                        fuente.setSize(18);
-                        fuente.setFamily(FontFamily.TIMES_ROMAN.toString());
-                        doc.add(imagen);
-                        doc.add(new Paragraph(a, fuente));
-                        doc.close();
-                        //   JOptionPane.showMessageDialog(null, "Documento creado con exito");
-                    } catch (Exception e) {
-                        JOptionPane.showMessageDialog(null, "error" + e);
-                    }
-                }
-
-            } else if (((Integer.parseInt(this.TXTanyo.getText())) == Calendario.getWeekYear()) && ((Integer.parseInt(mes) <= Calendario.get(Calendar.MONTH)))) {
+        } else if (((Integer.parseInt(this.TXTanyo.getText())) == Calendario.getWeekYear()) && ((Integer.parseInt(mes) <= Calendario.get(Calendar.MONTH)))) {
 
 //                System.out.println(mes);
 //                anyo = this.TXTanyo.getText();
@@ -1317,98 +1330,98 @@ public class FrmInterfaz1 extends javax.swing.JFrame {
 //                    }
 //
 //                }
-                System.out.println(mes);
-                anyo = this.TXTanyo.getText();
-                mCalculos = new Calculos();
-                result = mCalculos.ImpuestosMensuales(mes, anyo);
-                result2 = mCalculos.ImpuestosMensualesF(mes, anyo);
+            System.out.println(mes);
+            anyo = this.TXTanyo.getText();
+            mCalculos = new Calculos();
+            result = mCalculos.ImpuestosMensuales(mes, anyo);
+            result2 = mCalculos.ImpuestosMensualesF(mes, anyo);
 
-                if ((result == 0) && (result2 == 0)) {
-                    JOptionPane.showMessageDialog(null, "no existen facturas ni recibos en esta fecha");
-                } else {
+            if ((result == 0) && (result2 == 0)) {
+                JOptionPane.showMessageDialog(null, "no existen facturas ni recibos en esta fecha");
+            } else {
 
-                    this.Lblimpuesto.setText(String.valueOf(result + result2));
+                this.Lblimpuesto.setText(String.valueOf(result + result2));
 
-                    Ganacias = mCalculos.CalcularGananciasPerdidasMensuales();
-                    if (Ganacias > 0) {
+                Ganacias = mCalculos.CalcularGananciasPerdidasMensuales();
+                if (Ganacias > 0) {
 
-                        this.Lblganancias.setText("0");
-                        this.LblPerdidas.setText(String.valueOf(Ganacias));
-                        this.Perdida = Ganacias;
-                        this.Ganacias = 0;
+                    this.Lblganancias.setText("0");
+                    this.LblPerdidas.setText(String.valueOf(Ganacias));
+                    this.Perdida = Ganacias;
+                    this.Ganacias = 0;
 
-                    } else if (Ganacias < 0) {
+                } else if (Ganacias < 0) {
 
-                        this.Lblganancias.setText(String.valueOf(Ganacias));
-                        this.LblPerdidas.setText("0");
-                        this.Ganancia = Ganacias;
-                        this.Perdida = 0;
+                    this.Lblganancias.setText(String.valueOf(Ganacias));
+                    this.LblPerdidas.setText("0");
+                    this.Ganancia = Ganacias;
+                    this.Perdida = 0;
 
-                    }
-                    System.out.println(result);
-                    Fecha = anyo + "-" + mes + "-" + "01";
-                    System.out.println(Fecha);
-                    System.out.println(Ganacias);
-                    System.out.println(Perdida);
-
-                    try {
-                        //Conectamos con la base de datos
-
-                        Conexion mConexion = new Conexion();
-                        mConexion.Conectar("localhost", "nose_prueba", "root", "nose");
-                        //Formamos una instruccion DML -INSERT
-                        String INSERT = "insert into resultados values (?1,'?2','?3','?4','?5','?6')";
-                        INSERT = INSERT.replace("?1", String.valueOf("null"));
-                        INSERT = INSERT.replace("?2", String.valueOf(result + result2));
-                        INSERT = INSERT.replace("?3", String.valueOf(Ganacias));
-                        INSERT = INSERT.replace("?4", String.valueOf(Perdida));
-                        INSERT = INSERT.replace("?5", "0");
-                        INSERT = INSERT.replace("?6", Fecha);
-                        System.out.println(INSERT);
-                        //Llamamos al metodo que se encuentra en la clase conexión en el packete BaseDatos
-                        mConexion.ejecutarActualizacion(INSERT);
-                        JOptionPane.showMessageDialog(this, "guardado");
-                        //            this.setVisible(false);
-
-                    } catch (Exception error) {
-                        JOptionPane.showMessageDialog(this, "Error de guardar en la base de datos puede ser que ya se aya guardado en la base de datos");
-                        System.out.println(error.toString());
-                    }
-                    // String a=this.jtxtcont.getText();
-                    try {
-                        JOptionPane.showMessageDialog(this, "Selecciona La Ruta En Donde Se Guardará El Reporte");
-
-                        JFileChooser dlg = new JFileChooser();
-                        int option = dlg.showSaveDialog(this);
-                        Image imagen = Image.getInstance("C:\\Users\\Acer\\Documents\\Septimo Semestre\\Nacho-Scrum\\Pruebas_Nose\\PruebasN\\Nose\\src\\IMG-20171104-WA0004.jpg");
-                        imagen.setAbsolutePosition(400f, 650f);
-                        imagen.scalePercent(30f);
-                        imagen.setAlignment(Element.ALIGN_RIGHT);
-
-                        if (option == JFileChooser.APPROVE_OPTION) {
-
-                            File f = dlg.getSelectedFile();
-                            f1 = f.toString();
-                            this.jtxtdir.setText(f1);
-
-                        }
-                        String a = "Reporte del mes de " + this.cmbxMes.getSelectedItem().toString() + " " + this.TXTanyo.getText() + "\n" + "Impuestos mensuales: " + this.Lblimpuesto.getText() + "\n Ganancias Mensuales: " + this.Lblganancias.getText() + "\n Pedidas Mensuales: " + this.LblPerdidas.getText();
-                        FileOutputStream archivo = new FileOutputStream(f1 + ".pdf");
-                        Document doc = new Document();
-                        PdfWriter.getInstance(doc, archivo);
-                        doc.open();
-                        Font fuente = new Font();
-                        fuente.setSize(18);
-                        fuente.setFamily(FontFamily.TIMES_ROMAN.toString());
-                        doc.add(imagen);
-                        doc.add(new Paragraph(a, fuente));
-                        doc.close();
-                        //   JOptionPane.showMessageDialog(null, "Documento creado con exito");
-                    } catch (Exception e) {
-                        JOptionPane.showMessageDialog(null, "error" + e);
-                    }
                 }
-            
+                System.out.println(result);
+                Fecha = anyo + "-" + mes + "-" + "01";
+                System.out.println(Fecha);
+                System.out.println(Ganacias);
+                System.out.println(Perdida);
+
+                try {
+                    //Conectamos con la base de datos
+
+                    Conexion mConexion = new Conexion();
+                    mConexion.Conectar("localhost", "nose_prueba", "root", "nose");
+                    //Formamos una instruccion DML -INSERT
+                    String INSERT = "insert into resultados values (?1,'?2','?3','?4','?5','?6')";
+                    INSERT = INSERT.replace("?1", String.valueOf("null"));
+                    INSERT = INSERT.replace("?2", String.valueOf(result + result2));
+                    INSERT = INSERT.replace("?3", String.valueOf(Ganacias));
+                    INSERT = INSERT.replace("?4", String.valueOf(Perdida));
+                    INSERT = INSERT.replace("?5", "0");
+                    INSERT = INSERT.replace("?6", Fecha);
+                    System.out.println(INSERT);
+                    //Llamamos al metodo que se encuentra en la clase conexión en el packete BaseDatos
+                    mConexion.ejecutarActualizacion(INSERT);
+                    JOptionPane.showMessageDialog(this, "guardado");
+                    //            this.setVisible(false);
+
+                } catch (Exception error) {
+                    JOptionPane.showMessageDialog(this, "Error de guardar en la base de datos puede ser que ya se aya guardado en la base de datos");
+                    System.out.println(error.toString());
+                }
+                // String a=this.jtxtcont.getText();
+                try {
+                    JOptionPane.showMessageDialog(this, "Selecciona La Ruta En Donde Se Guardará El Reporte");
+
+                    JFileChooser dlg = new JFileChooser();
+                    int option = dlg.showSaveDialog(this);
+                    Image imagen = Image.getInstance("C:\\Users\\Acer\\Documents\\Septimo Semestre\\Nacho-Scrum\\Pruebas_Nose\\PruebasN\\Nose\\src\\IMG-20171104-WA0004.jpg");
+                    imagen.setAbsolutePosition(400f, 650f);
+                    imagen.scalePercent(30f);
+                    imagen.setAlignment(Element.ALIGN_RIGHT);
+
+                    if (option == JFileChooser.APPROVE_OPTION) {
+
+                        File f = dlg.getSelectedFile();
+                        f1 = f.toString();
+                        this.jtxtdir.setText(f1);
+
+                    }
+                    String a = "Reporte del mes de " + this.cmbxMes.getSelectedItem().toString() + " " + this.TXTanyo.getText() + "\n" + "Impuestos mensuales: " + this.Lblimpuesto.getText() + "\n Ganancias Mensuales: " + this.Lblganancias.getText() + "\n Pedidas Mensuales: " + this.LblPerdidas.getText();
+                    FileOutputStream archivo = new FileOutputStream(f1 + ".pdf");
+                    Document doc = new Document();
+                    PdfWriter.getInstance(doc, archivo);
+                    doc.open();
+                    Font fuente = new Font();
+                    fuente.setSize(18);
+                    fuente.setFamily(FontFamily.TIMES_ROMAN.toString());
+                    doc.add(imagen);
+                    doc.add(new Paragraph(a, fuente));
+                    doc.close();
+                    //   JOptionPane.showMessageDialog(null, "Documento creado con exito");
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "error" + e);
+                }
+            }
+
         } else if (this.RBtnAnual.isSelected()) {
             if ((this.TXTanyo.getText().equals("")) || ((Integer.parseInt(this.TXTanyo.getText())) > Calendario.getWeekYear())) {
                 JOptionPane.showMessageDialog(null, "Error");
@@ -1471,7 +1484,7 @@ public class FrmInterfaz1 extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         char caracter = evt.getKeyChar();
-        if (((caracter < '0') || (caracter > '9')) && (caracter != KeyEvent.VK_BACK_SPACE)&&(caracter != '-')) {
+        if (((caracter < '0') || (caracter > '9')) && (caracter != KeyEvent.VK_BACK_SPACE) && (caracter != '-')) {
             evt.consume();
             JOptionPane.showMessageDialog(rootPane, "Ingresar solo numeros");
         }
@@ -1486,7 +1499,7 @@ public class FrmInterfaz1 extends javax.swing.JFrame {
         trsFiltro = new TableRowSorter(this.TFacturasRecibos.getModel());
         TFacturasRecibos.setRowSorter(trsFiltro);
         trsFiltro.setRowFilter(RowFilter.regexFilter(TxtBuscar.getText(), 1));
-        
+
         char car = evt.getKeyChar();
     }//GEN-LAST:event_TxtBuscarKeyTyped
 
@@ -1534,7 +1547,7 @@ public class FrmInterfaz1 extends javax.swing.JFrame {
         if (this.RBEditar.isSelected()) {
 
             if (this.TxtRfcactivo.getText().equals("")) {
-                JOptionPane.showMessageDialog(null, "No Ingresaste nada");
+                JOptionPane.showMessageDialog(null, "Favor De Ingresar Tu RFC");
 
             } else {
                 int a = JOptionPane.showConfirmDialog(rootPane, "Estas Seguro Que Tu Rfc Es Correcto (Esto puede generar que no se realizen los calculos si esta incorrecto tu rfc)");
@@ -1556,29 +1569,33 @@ public class FrmInterfaz1 extends javax.swing.JFrame {
 
     private void TxtRfcactivoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtRfcactivoKeyTyped
         // TODO add your handling code here:
-         if (this.TxtRfcactivo.getText().length()== 10){
- 
+        if (this.TxtRfcactivo.getText().length() == 13) {
+
             evt.consume();
         }
-        this.TxtRfcactivo.addKeyListener(new KeyAdapter(){
-            public void keyTyped(KeyEvent e){
-            char character = e.getKeyChar();
-        
-                if(Character.isLowerCase(character)){
+        this.TxtRfcactivo.addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent e) {
+                char character = e.getKeyChar();
+
+                if (Character.isLowerCase(character)) {
                     e.setKeyChar(Character.toUpperCase(character));
 
                 }
             }
         });
-   Character s;
+        Character s;
 
         s = evt.getKeyChar();
-        if (!Character.isLetter(s) && s != KeyEvent.VK_0&& s != KeyEvent.VK_1&& s != KeyEvent.VK_2&& s != KeyEvent.VK_3&& s != KeyEvent.VK_4&& s != KeyEvent.VK_5&& s != KeyEvent.VK_6&& s != KeyEvent.VK_7&& s != KeyEvent.VK_8&& s != KeyEvent.VK_9) {
+        if (!Character.isLetter(s) && s != KeyEvent.VK_0 && s != KeyEvent.VK_1 && s != KeyEvent.VK_2 && s != KeyEvent.VK_3 && s != KeyEvent.VK_4 && s != KeyEvent.VK_5 && s != KeyEvent.VK_6 && s != KeyEvent.VK_7 && s != KeyEvent.VK_8 && s != KeyEvent.VK_9) {
             evt.consume();
         }
 
 
     }//GEN-LAST:event_TxtRfcactivoKeyTyped
+
+    private void TxtRfcactivoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtRfcactivoKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TxtRfcactivoKeyReleased
 
     /**
      * @param args the command line arguments
