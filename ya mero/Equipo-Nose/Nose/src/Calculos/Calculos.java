@@ -27,8 +27,8 @@ public class Calculos {
     private float ImpuestosM;
     float a;
     float aa;
-        float ga;
-            float pa;
+    float ga;
+    float pa;
     float b;
     float SueldoIVA;
 
@@ -133,7 +133,7 @@ public class Calculos {
             if (listaimpuestosA != null) {
                 while (listaimpuestosA.next()) {
 
-                    aa= listaimpuestosA.getFloat("total");
+                    aa = listaimpuestosA.getFloat("total");
 
                     System.out.println(aa);
                     return aa;
@@ -149,7 +149,7 @@ public class Calculos {
     }
 
     public float GananciasAnuales(String anyo) {
-          try {
+        try {
             // fecha = "Cmbanyo.getText()+"-"+CmbMes.getText()";
             Conexion mConexion = new Conexion();
             mConexion.Conectar("localhost", "nose_prueba", "root", "nose");
@@ -159,7 +159,7 @@ public class Calculos {
             if (listaimpuestosA != null) {
                 while (listaimpuestosA.next()) {
 
-                    ga= listaimpuestosA.getFloat("total");
+                    ga = listaimpuestosA.getFloat("total");
 
                     System.out.println(ga);
                     return ga;
@@ -173,9 +173,9 @@ public class Calculos {
         return ImpuestosM;
 
     }
-    
+
     public float PerdidasAnuales(String anyo) {
-          try {
+        try {
             // fecha = "Cmbanyo.getText()+"-"+CmbMes.getText()";
             Conexion mConexion = new Conexion();
             mConexion.Conectar("localhost", "nose_prueba", "root", "nose");
@@ -185,7 +185,7 @@ public class Calculos {
             if (listaimpuestosPA != null) {
                 while (listaimpuestosPA.next()) {
 
-                    pa= listaimpuestosPA.getFloat("total");
+                    pa = listaimpuestosPA.getFloat("total");
 
                     System.out.println(pa);
                     return pa;
