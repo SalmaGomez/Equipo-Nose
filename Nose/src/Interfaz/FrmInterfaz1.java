@@ -1463,15 +1463,35 @@ public class FrmInterfaz1 extends javax.swing.JFrame {
         if (this.RBEditar.isSelected()) {
 
             if (this.TxtRfcactivo.getText().equals("")) {
-                JOptionPane.showMessageDialog(null, "Favor De Ingresar Tu RFC");
+                JOptionPane.showMessageDialog(null, "Recuerda Que Si Modificas Tu Rfc El Sistema Lo Tomara Como Unico y Por Lo Tanto se Perdera Lo Antes Guardado");
+
+                JOptionPane.showMessageDialog(null, "Favor De Ingresar Tu RFC Nuevo");
 
             } else if (TxtRfcactivo.getText().length() == 13) {
 
-                int a = JOptionPane.showConfirmDialog(rootPane, "Estas Seguro Que Tu Rfc Es Correcto (Esto puede generar que no se realizen los calculos si esta incorrecto tu rfc)");
+                int a = JOptionPane.showConfirmDialog(rootPane, "Estas Seguro Que Tu Rfc Es Correcto (Se Borrara Todo Lo Almacenado Referente A Tu RFC Anterior)");
                 if (a == 0) {
+                    try {
+                        this.Lblactivo.setText(this.TxtRfcactivo.getText());
+                        this.actualizarusuario(1, TxtRfcactivo.getText());
 
-                    this.Lblactivo.setText(this.TxtRfcactivo.getText());
-                    this.actualizarusuario(1, TxtRfcactivo.getText());
+                        //Conectamos con la base de datos
+                        Conexion mConexion = new Conexion();
+                        mConexion.Conectar("localhost", "noseprueba", "root", "1234");
+                        //String impuestos = ("select SUM(Impuesto) as total from Recibo_Factura where fecha >= '?2-?1-01' and fecha <= '?2-?1-31';");
+                        //Realizamos una consulta sobre las tablas
+                        String consulta = "DELETE FROM Resultados;";
+                        mConexion.ejecutarActualizacion(consulta);
+                        // System.out.println(listaClientes.getFloat("Importe"));
+                        String consulta2 = "DELETE FROM Recibo_Factura;";
+                        mConexion.ejecutarActualizacion(consulta2);
+                        // System.out.println(listaClientes.getFloat("Importe"));
+
+                    } catch (Exception error) {
+                        JOptionPane.showMessageDialog(null, "Error al realizar Cambio De RFC");
+                        System.out.println(error.toString());
+                    }
+
                 }
             } else {
                 JOptionPane.showMessageDialog(null, "Favor De Ingresar Tu RFC Con 13 Caracteres");
