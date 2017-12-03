@@ -754,6 +754,13 @@ public class FrmInterfaz1 extends javax.swing.JFrame {
                     System.out.println(retenciones);
 
                     System.out.println(rfcactivo);
+                    boolean estado = this.verificar(folio, rfce, rfcr);
+                    if (estado == true) {
+                        JOptionPane.showMessageDialog(null, "Este archivo ya estaba almacenado en la BD con anterioridad ");
+                    } else {
+
+                   
+                    ////
                     if (rfcactivo.equals(rfce.toString())) {
                         //Recibo
                         LblNombree1.setText(nombree);
@@ -765,6 +772,7 @@ public class FrmInterfaz1 extends javax.swing.JFrame {
                         impuesto = mCalculos.CalcularImpuestosRecibo(Float.parseFloat(importe));
                         //LblImpuestos.setText(String.valueOf("impuesto"));
                         try {
+
                             //Conectamos con la base de datos
                             Conexion mConexion = new Conexion();
                             mConexion.Conectar("localhost", "noseprueba", "root", "1234");
@@ -910,11 +918,15 @@ public class FrmInterfaz1 extends javax.swing.JFrame {
 
                         JOptionPane.showMessageDialog(null, "RFC NO ENCONTRADO");
                     }
-                } catch (Exception error) {
+                
+                    
+                    }
+                    
+                    } catch (Exception error) {
                     JOptionPane.showMessageDialog(null, "Error No Puedes abrir ese archivo");
                 }
                 if (rfcr.toString() == "") {
-                    JOptionPane.showMessageDialog(null, "ESTE NO ES UN ARCHIVO FACTURA NI RECIBO");
+                    //JOptionPane.showMessageDialog(null, "ESTE NO ES UN ARCHIVO FACTURA NI RECIBO");
 
                 }
             }
@@ -1025,6 +1037,38 @@ public class FrmInterfaz1 extends javax.swing.JFrame {
         } catch (Exception error) {
             System.out.println(error.toString());
         }
+    }
+
+    public boolean verificar(String folio, String Rfcemisor, String Rfcreceptor) {
+        boolean existe = false;
+
+        try {
+            //Conectamos con la base de datos
+            Conexion mConexion = new Conexion();
+            mConexion.Conectar("localhost", "noseprueba", "root", "1234");
+            //String impuestos = ("select SUM(Impuesto) as total from Recibo_Factura where fecha >= '?2-?1-01' and fecha <= '?2-?1-31';");
+            //Realizamos una consulta sobre las tablas
+            String consulta = "select Folio,RFC_Emisor,RFC_Receptor,RFC_Emisor from Recibo_Factura where Folio='" + folio + "' AND RFC_Emisor='" + Rfcemisor + "' AND RFC_Receptor='" + Rfcreceptor + "'";
+            //SELECT escExpediente FROM KCP WHERE escExpediente = '" + exp+ "'"
+            ResultSet lista = mConexion.ejecutarConsulta(consulta);
+            // System.out.println(listaClientes.getFloat("Importe"));
+
+            if (lista != null) {
+
+                //Recorremos cada registro de la lista de datos
+                while (lista.next()) {
+                    existe = true;
+
+                }
+
+            }
+
+        } catch (Exception error) {
+            JOptionPane.showMessageDialog(null, "Error al realizar Consulta");
+            System.out.println(error.toString());
+        }
+
+        return existe;
     }
 
     public void consultar() throws Exception {
@@ -2003,18 +2047,14 @@ public class FrmInterfaz1 extends javax.swing.JFrame {
     }//GEN-LAST:event_pestanaconsultaFocusGained
 
     private void TxtBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtBuscarKeyTyped
-    
-        
-
 
 // TODO add your handling code here:
-
         char caracter = evt.getKeyChar();
-        
+
         if (((caracter < '0') || (caracter > '9')) && (caracter != KeyEvent.VK_BACK_SPACE) && (caracter != '-')) {
             evt.consume();
-            
-            JOptionPane.showMessageDialog(rootPane, "Ingresar solo numeros");
+
+            JOptionPane.showMessageDialog(rootPane, "Ingresar solo formato correcto de fecha");
         }
         TxtBuscar.addKeyListener(new KeyAdapter() {
             public void keyReleased(final KeyEvent e) {
@@ -2045,13 +2085,14 @@ public class FrmInterfaz1 extends javax.swing.JFrame {
         this.cadena = "";
         this.TxtBuscar.setText("");
         if (entradafac == 0) {
-            Cargar();
             this.LblFecha1.setText("_______________________");
             this.LblNombree1.setText("_______________________");
             this.LblNombrer1.setText("_______________________");
             this.LblRFCE1.setText("_______________________");
             this.LblRFCR1.setText("_______________________");
             this.LblTipo1.setText("Nose~Cont");
+            Cargar();
+
         } else if (entradafac > 0) {
             int a = JOptionPane.showConfirmDialog(rootPane, "Seguro que quieres cargar otra factura o recibo?");
             if (a == 0) {
@@ -2060,11 +2101,11 @@ public class FrmInterfaz1 extends javax.swing.JFrame {
 
         }
         entradafac = 1;
-      trsFiltro = new TableRowSorter(this.TFacturasRecibos.getModel());
+        trsFiltro = new TableRowSorter(this.TFacturasRecibos.getModel());
         TFacturasRecibos.setRowSorter(trsFiltro);
         trsFiltro.setRowFilter(RowFilter.regexFilter(TxtBuscar.getText(), 2));
 
-      
+
     }//GEN-LAST:event_BtnCargarActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -2073,30 +2114,36 @@ public class FrmInterfaz1 extends javax.swing.JFrame {
         if (this.RBEditar.isSelected()) {
 
             if (this.TxtRfcactivo.getText().equals("")) {
-                JOptionPane.showMessageDialog(null, "Recuerda Que Si Modificas Tu Rfc El Sistema Lo Tomara Como Unico y Por Lo Tanto se Perdera Lo Antes Guardado");
 
                 JOptionPane.showMessageDialog(null, "Favor De Ingresar Tu RFC Nuevo");
+
+            }  else if (this.TxtRfcactivo.getText().equals(Lblactivo.getText())) {
+
+                JOptionPane.showMessageDialog(null, "Es El Mismo RFC con el que se esta trabajando");
 
             } else if (TxtRfcactivo.getText().length() == 13) {
 
                 int a = JOptionPane.showConfirmDialog(rootPane, "Estas Seguro Que Tu Rfc Es Correcto (Se Borrara Todo Lo Almacenado Referente A Tu RFC Anterior)");
                 if (a == 0) {
                     try {
-                        this.Lblactivo.setText(this.TxtRfcactivo.getText());
+                        rfcactivo = (this.TxtRfcactivo.getText());
                         this.actualizarusuario(1, TxtRfcactivo.getText());
+                        this.Lblactivo.setText(rfcactivo);
 
                         //Conectamos con la base de datos
                         Conexion mConexion = new Conexion();
                         mConexion.Conectar("localhost", "noseprueba", "root", "1234");
                         //String impuestos = ("select SUM(Impuesto) as total from Recibo_Factura where fecha >= '?2-?1-01' and fecha <= '?2-?1-31';");
                         //Realizamos una consulta sobre las tablas
-                        String consulta = "DELETE FROM Resultados;";
+                        String consulta = "truncate Recibo_Factura;";
                         mConexion.ejecutarActualizacion(consulta);
-                        // System.out.println(listaClientes.getFloat("Importe"));
-                        String consulta2 = "DELETE FROM Recibo_Factura;";
-                        mConexion.ejecutarActualizacion(consulta2);
-                        // System.out.println(listaClientes.getFloat("Importe"));
-
+                        // RBEditar.enableInputMethods(false);
+                        // RBEditar.set
+                        trsFiltro = new TableRowSorter(this.TFacturasRecibos.getModel());
+                        TFacturasRecibos.setRowSorter(trsFiltro);
+                        trsFiltro.setRowFilter(RowFilter.regexFilter(TxtBuscar.getText(), 2));
+                        this.RBEditar.setSelected(false);
+                        this.TxtRfcactivo.setEnabled(false);
                     } catch (Exception error) {
                         JOptionPane.showMessageDialog(null, "Error al realizar Cambio De RFC");
                         System.out.println(error.toString());
@@ -2115,6 +2162,8 @@ public class FrmInterfaz1 extends javax.swing.JFrame {
         }
 
         this.TxtRfcactivo.setText("");
+        this.CargarTabla(TFacturasRecibos, "");
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void TxtRfcactivoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtRfcactivoKeyTyped
@@ -2179,16 +2228,13 @@ public class FrmInterfaz1 extends javax.swing.JFrame {
 
     private void TxtBuscarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtBuscarKeyPressed
         // TODO add your handling code here:
-        
-        
+
 
     }//GEN-LAST:event_TxtBuscarKeyPressed
 
     private void TxtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtBuscarKeyReleased
         // TODO add your handling code here:        
-      
-        
-     
+
 
     }//GEN-LAST:event_TxtBuscarKeyReleased
 
