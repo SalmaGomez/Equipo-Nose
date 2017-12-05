@@ -1,27 +1,27 @@
-
 package Factura_Recibo;
 
- public class Factura {
- private int folio;
- private float importe;
- private String fecha;
- private String receptor_nombre;
- private String emisor_nombre;
- private String RFC_receptor;
- private String RFC_emisor;
- private float traslados;
-  
-  public Factura(){ 
-      
-      folio =0;
-      importe = 0;
-       fecha = " ";
-      receptor_nombre=" ";
-      emisor_nombre=" ";
-      RFC_receptor = " ";
-      RFC_emisor = " ";
-      traslados=0;
-  }
+public class Factura {
+
+    private int folio;
+    private float importe;
+    private String fecha;
+    private String receptor_nombre;
+    private String emisor_nombre;
+    private String RFC_receptor;
+    private String RFC_emisor;
+    private float traslados;
+
+    public Factura() {
+
+        folio = 0;
+        importe = 0;
+        fecha = " ";
+        receptor_nombre = " ";
+        emisor_nombre = " ";
+        RFC_receptor = " ";
+        RFC_emisor = " ";
+        traslados = 0;
+    }
 
     public int getFolio() {
         return folio;
@@ -86,6 +86,5 @@ package Factura_Recibo;
     public void setTraslados(float traslados) {
         this.traslados = traslados;
     }
- 
-  
+
 }
