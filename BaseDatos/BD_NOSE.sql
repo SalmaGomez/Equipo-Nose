@@ -1,14 +1,5 @@
-CREATE TABLE Resultados (
-  idResultados INTEGER NOT NULL AUTO_INCREMENT,
-  Impuestos FLOAT NULL,
-  Ganancias FLOAT NULL,
-  Perdidas FLOAT NULL,
-  Utilidad_Bruta FLOAT NULL,
-  Fecha DATE NULL UNIQUE,
-  PRIMARY KEY(idResultados)
-);
-
 CREATE TABLE Recibo_Factura (
+  idRecibo_Factura INTEGER NOT NULL AUTO_INCREMENT,
   Folio INTEGER NOT NULL,
   Importe FLOAT NULL,
   Fecha DATE NULL ,
@@ -19,7 +10,7 @@ CREATE TABLE Recibo_Factura (
   Tipo VARCHAR (100) NOT NULL,
   Impuesto FLOAT NULL,
   Metodo_Pago VARCHAR (100) NOT NULL,
-  PRIMARY KEY(Folio)
+  PRIMARY KEY(idRecibo_Factura)
 );
 
 CREATE TABLE Usuario (
